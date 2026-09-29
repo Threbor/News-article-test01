@@ -1,0 +1,165 @@
+name: Édition quotidienne
+
+# Chaque matin, un agent Claude par rubrique enquête et rédige son article,
+# puis un agent « rédacteur en chef » écrit l'éditorial et choisit la une.
+# L'édition est ensuite commitée et le site republié.
+
+on:
+  schedule:
+    # 04:17 UTC ≈ 6 h 17 à Paris (heure d'été) / 5 h 17 (heure d'hiver)
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+    inputs:
+      rubriques:
+        description: "Rubriques à produire (ids séparés par des virgules, vide = toutes)"
+        required: false
+        default: ""
+
+concurrency:
+  group: edition-quotidienne
+  cancel-in-progress: false
+
+env:
+  MODELE: ${{ vars.MODELE_REDACTION || 'claude-sonnet-5-5' }}
+
+jobs:
+  preparation:
+    runs-on: ubuntu-latest
+    outputs:
+      date: ${{ steps.p.outputs.date }}
+      rubriques: ${{ steps.p.outputs.rubriques }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          FILTRE: ${{ inputs.rubriques }}
+        run: |
+          echo "date=$(TZ=Europe/Paris date +%F)" >> "$GITHUB_OUTPUT"
+          node -e '
+            const c = require("./site.config.json");
+            const f = (process.env.FILTRE || "").split(",").map(s => s.trim()).filter(Boolean);
+            const r = c.rubriques.filter(x => !f.length || f.includes(x.id))
+              .map(({ id, nom, agent }) => ({ id, nom, agent }));
+            console.log("rubriques=" + JSON.stringify(r));
+          ' >> "$GITHUB_OUTPUT"
+
+  redaction:
+    needs: preparation
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        rubrique: ${{ fromJSON(needs.preparation.outputs.rubriques) }}
+    name: "Rédaction · ${{ matrix.rubrique.nom }}"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: L'agent enquête et rédige
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --model ${{ env.MODELE }}
+            --max-turns 60
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep"
+          prompt: |
+            Tu es « ${{ matrix.rubrique.agent }} », rédacteur de la rubrique « ${{ matrix.rubrique.nom }} »
+            (id : ${{ matrix.rubrique.id }}) du journal d'analyse quotidien décrit dans site.config.json.
+            Nous sommes le ${{ needs.preparation.outputs.date }}.
+
+            1. Lis redaction/CONSIGNES.md (charte et format obligatoires) et la consigne de ta rubrique
+               dans site.config.json.
+            2. Regarde les titres des articles de ta rubrique des jours précédents
+               (content/*/${{ matrix.rubrique.id }}.md, lis seulement les en-têtes) pour ne pas
+               répéter un sujet déjà traité, sauf développement nouveau majeur.
+            3. Recherche l'actualité des dernières 24 à 72 heures avec WebSearch, lis les articles
+               clés avec WebFetch, choisis UN sujet fort et analyse-le en profondeur.
+            4. Écris l'article (800 à 1 200 mots, au moins 4 sources réelles avec URL) dans
+               content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md,
+               avec `rubrique: ${{ matrix.rubrique.id }}`, `auteur: ${{ matrix.rubrique.agent }}`
+               et `date: ${{ needs.preparation.outputs.date }}`.
+            N'invente aucun fait, chiffre ou citation. Ne modifie aucun autre fichier.
+
+      - name: Vérification du format
+        run: node scripts/verifier.mjs "content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: article-${{ matrix.rubrique.id }}
+          path: content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md
+          retention-days: 7
+
+  bouclage:
+    needs: [preparation, redaction]
+    if: ${{ !cancelled() && needs.preparation.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Récupération des articles
+        uses: actions/download-artifact@v4
+        with:
+          pattern: article-*
+          merge-multiple: true
+          path: content/${{ needs.preparation.outputs.date }}
+
+      - name: Au moins un article ?
+        run: |
+          n=$(ls content/${{ needs.preparation.outputs.date }}/*.md 2>/dev/null | wc -l)
+          echo "$n article(s) rendu(s)"
+          test "$n" -gt 0
+
+      - name: Le rédacteur en chef écrit l'éditorial
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --model ${{ env.MODELE }}
+            --max-turns 25
+            --allowedTools "Read,Write,Glob,Grep"
+          prompt: |
+            Tu es le rédacteur en chef du journal décrit dans site.config.json.
+            Nous sommes le ${{ needs.preparation.outputs.date }}.
+            Lis redaction/CONSIGNES.md (section « Éditorial »), puis tous les articles de
+            content/${{ needs.preparation.outputs.date }}/.
+            Écris content/${{ needs.preparation.outputs.date }}/editorial.md : 350 à 500 mots,
+            `rubrique: editorial`, `auteur: Le rédacteur en chef`, `date: ${{ needs.preparation.outputs.date }}`,
+            et `une: <id de la rubrique>` pour l'article qui fera la une. Dégage un fil rouge entre
+            les articles, sans ajouter de fait qui n'y figure pas. Termine par « ## Sources »
+            listant les articles de l'édition. Ne modifie aucun autre fichier.
+
+      - name: Vérification et construction
+        run: |
+          node scripts/verifier.mjs content/${{ needs.preparation.outputs.date }}/*.md || true
+          node scripts/build.mjs
+
+      - name: Publication de l'édition dans le dépôt
+        run: |
+          git config user.name "La rédaction (agents)"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/
+          git commit -m "Édition du ${{ needs.preparation.outputs.date }}" || { echo "Rien de nouveau"; exit 0; }
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+  publication:
+    needs: bouclage
+    if: ${{ !cancelled() && needs.bouclage.result == 'success' }}
+    uses: ./.github/workflows/publier.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

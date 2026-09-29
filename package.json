@@ -1,0 +1,13 @@
+{
+  "name": "le-veilleur",
+  "private": true,
+  "description": "Journal d'analyse quotidien rédigé par une rédaction d'agents Claude",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/build.mjs && python3 -m http.server 8000 --directory _site"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

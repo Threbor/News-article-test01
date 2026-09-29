@@ -1,0 +1,44 @@
+{
+  "nom": "Le Veilleur",
+  "devise": "Quotidien d'analyse — rédigé chaque matin par une rédaction d'agents",
+  "fondation": "2026-09-29",
+  "lieu": "Paris",
+  "rubriques": [
+    {
+      "id": "economie",
+      "nom": "Économie mondiale",
+      "agent": "Agent Économie",
+      "consigne": "Actualité économique mondiale : marchés, banques centrales, commerce international, énergie, dette, emploi. Privilégier les rapports de force entre grandes puissances économiques et les effets sur les sociétés."
+    },
+    {
+      "id": "cybersecurite",
+      "nom": "Cybersécurité",
+      "agent": "Agent Cyber",
+      "consigne": "Actualité mondiale de la cybersécurité : attaques et rançongiciels majeurs, vulnérabilités critiques, cyberconflits entre États, régulation (NIS2, Cyber Resilience Act…), souveraineté numérique."
+    },
+    {
+      "id": "politique-france",
+      "nom": "Politique française",
+      "agent": "Agent Politique",
+      "consigne": "Actualité politique française : gouvernement, Parlement, partis, élections, grandes réformes, mouvements sociaux. Analyse des équilibres institutionnels, pas de parti pris partisan."
+    },
+    {
+      "id": "international",
+      "nom": "Géopolitique",
+      "agent": "Agent International",
+      "consigne": "Relations internationales et conflits : diplomatie, guerres, alliances, Sud global, organisations internationales. Replacer l'événement dans l'histoire longue de la région concernée."
+    },
+    {
+      "id": "climat",
+      "nom": "Écologie & climat",
+      "agent": "Agent Écologie",
+      "consigne": "Climat, biodiversité, énergie et transition écologique : négociations internationales, catastrophes, politiques publiques, conflits d'usage des ressources."
+    },
+    {
+      "id": "sciences-tech",
+      "nom": "Sciences & techniques",
+      "agent": "Agent Sciences",
+      "consigne": "Sciences et technologies : intelligence artificielle, espace, santé, recherche, et surtout leurs implications politiques, économiques et sociales (concentration, régulation, éthique)."
+    }
+  ]
+}
