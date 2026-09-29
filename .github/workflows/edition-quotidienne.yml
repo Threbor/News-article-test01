@@ -2,7 +2,8 @@ name: Édition quotidienne
 
 # Chaque matin, un agent Claude par rubrique enquête et rédige son article,
 # puis un agent « rédacteur en chef » écrit l'éditorial et choisit la une.
-# L'édition est ensuite commitée et le site republié.
+# L'édition est ensuite commitée sur la branche principale ; Vercel détecte
+# le push et redéploie le site automatiquement.
 
 on:
   schedule:
@@ -155,11 +156,8 @@ jobs:
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
-  publication:
-    needs: bouclage
-    if: ${{ !cancelled() && needs.bouclage.result == 'success' }}
-    uses: ./.github/workflows/publier.yml
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+      - name: Redéploiement Vercel (hook optionnel)
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$HOOK" ]; then curl -fsS -X POST "$HOOK" && echo "Déploiement Vercel demandé"; else echo "Pas de hook : Vercel redéploiera sur le push"; fi

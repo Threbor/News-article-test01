@@ -310,7 +310,8 @@ ${articles.length ? articles.map((a) => carte(a, racine)).join("\n") : "<p>Aucun
 }
 
 function flux(editions) {
-  const base = (process.env.SITE_URL || "").replace(/\/$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const base = (process.env.SITE_URL || (vercel ? `https://${vercel}` : "")).replace(/\/$/, "");
   const items = editions.flatMap((e) => e.articles).slice(0, 50).map((a) => `<item>
   <title>${esc(a.titre)}</title>
   <link>${esc(`${base}/${a.url}`)}</link>

@@ -23,6 +23,7 @@ Ce skill fait tourner toute la rédaction dans une seule session Claude Code
 5. Écris toi-même l'éditorial `content/DATE/editorial.md` en suivant la section
    « Éditorial » de `CONSIGNES.md` (avec la clé `une:`).
 6. `node scripts/build.mjs` doit réussir.
-7. Commit `Édition du DATE` et push sur la branche de travail. Si la branche de
-   publication (`main`) n'est pas celle de la session, indique-le dans le résumé.
+7. Commit `Édition du DATE` et push sur `main` : Vercel redéploie le site à
+   chaque push sur cette branche. Si la session ne peut pousser que sur une
+   autre branche, indique-le dans le résumé.
 8. Résume : titres de l'édition, article à la une, éventuels échecs.

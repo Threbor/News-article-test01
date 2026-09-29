@@ -27,9 +27,9 @@ content/AAAA-MM-JJ/*.md        les articles, une édition par dossier
 assets/style.css               mise en page
 scripts/build.mjs              générateur du site statique (sans dépendance) → _site/
 scripts/verifier.mjs           contrôle du format des articles
+vercel.json                    configuration de l'hébergement Vercel
 .github/workflows/
-  edition-quotidienne.yml      la routine : agents → éditorial → commit → publication
-  publier.yml                  construction et mise en ligne sur GitHub Pages
+  edition-quotidienne.yml      la routine : agents → éditorial → commit sur main
 .claude/skills/edition-du-jour la même routine, lançable depuis Claude Code
 ```
 
@@ -41,11 +41,18 @@ npm run serve        # puis ouvrir http://localhost:8000
 
 ## Mise en route de la routine quotidienne
 
-1. **Branche principale** : fusionner cette branche dans `main` et en faire
-   la branche par défaut du dépôt. Les tâches planifiées de GitHub
+1. **Branche principale** : la routine publie sur `main`, qui doit être la
+   branche par défaut du dépôt. Les tâches planifiées de GitHub
    s'exécutent uniquement sur la branche par défaut.
-2. **GitHub Pages** : *Settings → Pages → Build and deployment → Source :
-   GitHub Actions*.
+2. **Vercel** : sur vercel.com, *Add New → Project*, importer ce dépôt et
+   garder les réglages proposés, qui sont lus depuis `vercel.json` : build
+   `node scripts/build.mjs`, dossier de sortie `_site`, pas de framework.
+   Chaque push sur `main` redéploie le site, y compris le commit quotidien
+   de la rédaction.
+   Si Vercel bloque les déploiements déclenchés par le bot GitHub (cas des
+   dépôts privés sur l'offre Hobby), créer un *Deploy Hook* dans *Settings →
+   Git* du projet Vercel et l'enregistrer comme secret GitHub
+   `VERCEL_DEPLOY_HOOK`. La routine l'appellera après chaque édition.
 3. **Accès à Claude** : dans *Settings → Secrets and variables → Actions*,
    ajouter **un seul** de ces secrets :
    - `CLAUDE_CODE_OAUTH_TOKEN`, pour utiliser un abonnement Claude Pro ou Max.
