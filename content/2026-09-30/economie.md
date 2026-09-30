@@ -1,5 +1,6 @@
 ---
 titre: Détente avec Pékin, embargo contre Ottawa : le commerce à la carte de Washington
+titre_court: Le commerce à la carte de Washington
 surtitre: Guerres commerciales américaines
 chapo: En quarante-huit heures, les États-Unis ont conclu avec la Chine une baisse réciproque de droits de douane sur 60 milliards de dollars de marchandises et interdit l'entrée d'une série de produits canadiens. Ce double mouvement révèle une politique commerciale devenue bilatérale, transactionnelle et négociée produit par produit.
 rubrique: economie

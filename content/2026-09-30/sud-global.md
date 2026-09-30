@@ -1,5 +1,6 @@
 ---
 titre: Au Burkina Faso, l'or raffiné à domicile se heurte au verrou de Londres
+titre_court: L'or raffiné du Burkina Faso
 surtitre: Burkina Faso, souveraineté minière
 chapo: Le capitaine Ibrahim Traoré a inauguré le 28 septembre la première raffinerie d'or du pays, vitrine de sa politique de souveraineté économique. Mais pour peser sur le marché mondial, les lingots burkinabè devront encore trouver assez de minerai et, surtout, gagner la confiance de Londres.
 rubrique: sud-global

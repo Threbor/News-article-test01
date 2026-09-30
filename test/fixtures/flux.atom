@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Test</title>
+<entry><title>Le Parlement européen adopte le texte</title><link rel="alternate" href="https://exemple.eu/texte"/><updated>2099-01-04T10:00:00Z</updated><summary>Vote à Bruxelles.</summary></entry>
+</feed>

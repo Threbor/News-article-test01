@@ -1,9 +1,9 @@
 name: Édition quotidienne
 
-# Chaque matin, un agent Claude par rubrique enquête et rédige son article,
-# puis un agent « rédacteur en chef » écrit l'éditorial et choisit la une.
-# L'édition est ensuite commitée sur la branche principale ; Vercel détecte
-# le push et redéploie le site automatiquement.
+# Enveloppe mince autour de bin/edition.sh, qui fait tout le travail et se lance aussi à la main :
+# collecte des flux → rubriques du jour en parallèle → éditorial → site.
+# L'édition et le journal de consommation sont ensuite commités sur la branche principale ;
+# Vercel redéploie le site à chaque push.
 
 on:
   schedule:
@@ -11,8 +11,12 @@ on:
     - cron: "17 4 * * *"
   workflow_dispatch:
     inputs:
+      date:
+        description: "Date de l'édition (AAAA-MM-JJ, vide = aujourd'hui)"
+        required: false
+        default: ""
       rubriques:
-        description: "Rubriques à produire (ids séparés par des virgules, vide = toutes)"
+        description: "Rubriques à produire (ids séparés par des virgules, vide = le plan du jour)"
         required: false
         default: ""
 
@@ -20,150 +24,60 @@ concurrency:
   group: edition-quotidienne
   cancel-in-progress: false
 
-env:
-  MODELE: ${{ vars.MODELE_REDACTION || 'claude-sonnet-5-5' }}
-
 jobs:
-  preparation:
+  edition:
     runs-on: ubuntu-latest
-    outputs:
-      date: ${{ steps.p.outputs.date }}
-      rubriques: ${{ steps.p.outputs.rubriques }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: p
-        env:
-          FILTRE: ${{ inputs.rubriques }}
-        run: |
-          echo "date=$(TZ=Europe/Paris date +%F)" >> "$GITHUB_OUTPUT"
-          node -e '
-            const c = require("./site.config.json");
-            const f = (process.env.FILTRE || "").split(",").map(s => s.trim()).filter(Boolean);
-            const r = c.rubriques.filter(x => !f.length || f.includes(x.id))
-              .map(({ id, nom, agent }) => ({ id, nom, agent }));
-            console.log("rubriques=" + JSON.stringify(r));
-          ' >> "$GITHUB_OUTPUT"
-
-  redaction:
-    needs: preparation
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    permissions:
-      contents: read
-      id-token: write
-    strategy:
-      fail-fast: false
-      max-parallel: 4
-      matrix:
-        rubrique: ${{ fromJSON(needs.preparation.outputs.rubriques) }}
-    name: "Rédaction · ${{ matrix.rubrique.nom }}"
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: L'agent enquête et rédige
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          claude_args: |
-            --model ${{ env.MODELE }}
-            --max-turns 80
-            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(node scripts/verifier.mjs:*),Bash(node scripts/verifier-liens.mjs:*)"
-          prompt: |
-            Tu es « ${{ matrix.rubrique.agent }} », rédacteur de la rubrique « ${{ matrix.rubrique.nom }} »
-            (id : ${{ matrix.rubrique.id }}) du journal d'analyse quotidien décrit dans site.config.json.
-            Nous sommes le ${{ needs.preparation.outputs.date }}.
-
-            1. Lis EN ENTIER redaction/CONSIGNES.md (charte, règle d'or des sources, format de ta
-               rubrique) et la consigne de ta rubrique dans site.config.json.
-            2. Lis les en-têtes des articles de ta rubrique des jours précédents
-               (content/*/${{ matrix.rubrique.id }}.md) pour ne pas répéter un sujet déjà traité,
-               sauf développement nouveau majeur.
-            3. Recherche l'actualité des dernières 24 à 72 heures avec WebSearch, ouvre les articles
-               clés avec WebFetch et choisis UN sujet fort. Fais aussi des recherches dédiées pour
-               les notions clés et les ressources « Pour aller plus loin ».
-            4. Écris content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md au format
-               de CONSIGNES.md, avec `rubrique: ${{ matrix.rubrique.id }}`,
-               `auteur: ${{ matrix.rubrique.agent }}` et `date: ${{ needs.preparation.outputs.date }}`.
-               Chaque fait porte son lien cliquable ; n'utilise que des URL vues dans tes recherches.
-            5. Lance `node scripts/verifier-liens.mjs <ton fichier>` et remplace chaque lien signalé
-               mort par une autre source réelle, puis `node scripts/verifier.mjs <ton fichier>` et
-               corrige jusqu'à ce qu'il passe.
-            N'invente aucun fait, chiffre, citation ni URL. Ne modifie aucun autre fichier.
-
-      - name: Vérification du format
-        run: node scripts/verifier.mjs "content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md"
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: article-${{ matrix.rubrique.id }}
-          path: content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md
-          retention-days: 7
-
-  bouclage:
-    needs: [preparation, redaction]
-    if: ${{ !cancelled() && needs.preparation.result == 'success' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     permissions:
       contents: write
-      id-token: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Récupération des articles
-        uses: actions/download-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          pattern: article-*
-          merge-multiple: true
-          path: content/${{ needs.preparation.outputs.date }}
+          node-version: 22
 
-      - name: Au moins un article ?
-        run: |
-          n=$(ls content/${{ needs.preparation.outputs.date }}/*.md 2>/dev/null | wc -l)
-          echo "$n article(s) rendu(s)"
-          test "$n" -gt 0
+      - name: Installation de Claude Code
+        run: npm install --global @anthropic-ai/claude-code
 
-      - name: Le rédacteur en chef écrit l'éditorial
-        uses: anthropics/claude-code-action@v1
+      - name: Tests
+        run: npm test
+
+      - name: Production de l'édition
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          VEILLEUR_MODELE: ${{ vars.MODELE_REDACTION }}
+          PARALLELE: "3"
+          DATE_EDITION: ${{ inputs.date }}
+          RUBRIQUES: ${{ inputs.rubriques }}
+        run: bin/edition.sh "$DATE_EDITION" "$RUBRIQUES"
+
+      - name: Brouillons rejetés (pour examen)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          claude_args: |
-            --model ${{ env.MODELE }}
-            --max-turns 25
-            --allowedTools "Read,Write,Glob,Grep"
-          prompt: |
-            Tu es le rédacteur en chef du journal décrit dans site.config.json.
-            Nous sommes le ${{ needs.preparation.outputs.date }}.
-            Lis redaction/CONSIGNES.md (section « Éditorial »), puis tous les articles de
-            content/${{ needs.preparation.outputs.date }}/.
-            Écris content/${{ needs.preparation.outputs.date }}/editorial.md : 300 à 450 mots,
-            `rubrique: editorial`, `auteur: Le rédacteur en chef`, `date: ${{ needs.preparation.outputs.date }}`,
-            et `une: <id de la rubrique>` pour l'article qui fera la une. Dégage un fil rouge entre
-            les articles, sans ajouter de fait qui n'y figure pas, en renvoyant à chacun par un lien
-            relatif (`[texte](economie.html)`). Termine par « ## Sources » listant les articles
-            de l'édition sous forme de liens relatifs. Ne modifie aucun autre fichier.
+          name: brouillons-rejetes
+          path: content/*/*.rejete
+          if-no-files-found: ignore
+          retention-days: 14
 
-      - name: Contrôle des liens, vérification et construction
-        run: |
-          node scripts/verifier-liens.mjs --corriger content/${{ needs.preparation.outputs.date }}/*.md || true
-          node scripts/verifier.mjs content/${{ needs.preparation.outputs.date }}/*.md || true
-          node scripts/build.mjs
-
-      - name: Publication de l'édition dans le dépôt
+      - name: Publication dans le dépôt
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "La rédaction (agents)"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add content/
-          git commit -m "Édition du ${{ needs.preparation.outputs.date }}" || { echo "Rien de nouveau"; exit 0; }
+          if [ -d journal ]; then git add journal/; fi
+          git commit -m "Édition du ${DATE_EDITION:-$(node bin/plan.mjs --aujourdhui)}" || { echo "Rien de nouveau"; exit 0; }
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
+        env:
+          DATE_EDITION: ${{ inputs.date }}
 
-      - name: Redéploiement Vercel (hook optionnel)
+      - name: Redéploiement Vercel (hook facultatif)
+        if: ${{ !cancelled() }}
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
-          if [ -n "$HOOK" ]; then curl -fsS -X POST "$HOOK" && echo "Déploiement Vercel demandé"; else echo "Pas de hook : Vercel redéploiera sur le push"; fi
+          if [ -n "$HOOK" ]; then curl -fsS -X POST "$HOOK" > /dev/null; fi

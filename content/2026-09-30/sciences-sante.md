@@ -1,5 +1,6 @@
 ---
 titre: Ebola Bundibugyo, la science court derrière une épidémie sans vaccin homologué
+titre_court: Ebola Bundibugyo sans vaccin
 surtitre: Ebola en RDC
 chapo: L'épidémie d'Ebola due au virus Bundibugyo a dépassé 8 000 cas confirmés en République démocratique du Congo, près de la moitié mortels. Faute de vaccin et de traitement homologués, chercheurs et soignants testent leurs outils en pleine crise, et la génétique éclaire l'origine du virus.
 rubrique: sciences-sante

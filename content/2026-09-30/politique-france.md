@@ -1,5 +1,6 @@
 ---
 titre: Budget 2027 : la rue avant l'hémicycle, le compromis en suspens
+titre_court: Budget 2027 sous pression
 surtitre: Projet de loi de finances 2027
 chapo: Deux jours avant la présentation du budget 2027 en Conseil des ministres, les fonctionnaires ont manifesté mardi contre le gel du point d'indice. Le gouvernement Lecornu aborde l'automne budgétaire sous la double pression de la rue et d'une menace de censure socialiste.
 rubrique: politique-france

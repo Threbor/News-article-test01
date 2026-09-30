@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #e9e5dc; color: #1b1a18; }
+a { color: #9b1c1f; text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: #7d1518; }
+</style>
+</helmet>
+
+<div style="padding: 72px 80px 120px; font-family: 'Source Sans 3', sans-serif; display: flex; flex-direction: column; gap: 96px; width: max-content;">
+
+  <header style="max-width: 1100px;">
+    <p style="margin: 0 0 10px; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">Le Veilleur · refonte smartphone</p>
+    <h1 style="margin: 0 0 16px; font: 900 64px/1.02 'Playfair Display', serif; letter-spacing: -.01em;">Le parcours du matin en cinq minutes</h1>
+    <p style="margin: 0 0 18px; font: 21px/1.5 'Libre Caslon Text', serif; color: #45423d; max-width: 900px; text-wrap: pretty;">Chaque écran ci-dessous est le prototype réel, affiché à 390 × 844 px, avec les classes de <code>mobile.css</code> et les comportements de <code>app.js</code>. La version ordinateur n’est pas touchée : toutes les règles nouvelles sont confinées sous 820 px.</p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; font: 600 15px 'Source Sans 3';">
+      <a href="Veilleur%20Prototype.dc.html">Ouvrir le prototype interactif</a>
+      <span style="color: #7c776f;">·</span>
+      <a href="#parcours" style="white-space: nowrap;">1. Parcours annoté</a>
+      <a href="#gabarits" style="white-space: nowrap;">2. Autres gabarits</a>
+      <a href="#sombre" style="white-space: nowrap;">3. Mode sombre</a>
+      <a href="#systeme" style="white-space: nowrap;">4. Système de design</a>
+      <a href="#priorites" style="white-space: nowrap;">5. Priorités</a>
+    </div>
+  </header>
+
+  <!-- 1. PARCOURS -->
+  <section id="parcours" style="display: flex; flex-direction: column; gap: 28px;">
+    <div style="border-top: 3px double #1b1a18; padding-top: 14px; max-width: 1100px;">
+      <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">1 · Parcours annoté</p>
+      <h2 style="margin: 6px 0 8px; font: 700 38px/1.1 'Playfair Display', serif;">Huit écrans, jamais plus de deux gestes</h2>
+      <p style="margin: 0; font: 17px/1.55 'Libre Caslon Text', serif; color: #45423d; max-width: 900px;">La barre du bas reste sous le pouce sur toutes les pages : « Sommaire » ouvre l’édition, les cahiers et la recherche depuis n’importe où, et sur un article « Suivant » enchaîne sans retour à l’accueil.</p>
+    </div>
+    <div style="display: flex; gap: 40px; align-items: flex-start;">
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;theme=light&amp;lus=" title="Une" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">1</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">J’ouvre le site</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Date et numéro, la une, puis le sommaire numéroté des 13 titres sur deux colonnes, comme la table d’un numéro imprimé. L’en-tête passe de 223 à 84 px.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : aucun · Transition : au défilement, le bandeau réduit glisse depuis le haut.</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;etat=defile&amp;theme=light&amp;lus=" title="L’essentiel en carrousel" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">2</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Je parcours L’essentiel</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Les 12 brèves en carrousel : amorce de la carte suivante, dégradé en bord, compteur « 1 / 12 » et flèches de 44 px. « Tout lire à la suite » ouvre les brèves repliables.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : balayer vers la gauche · Bandeau réduit visible : Le Veilleur · N° 2.</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;theme=light&amp;lus=" title="Article, haut" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">3</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">J’ouvre un article</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Bandeau de 48 px, titre aligné à gauche, chapô en romain. Une ligne explique les deux types de renvois. « En bref » numéroté commence dans le premier écran.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : toucher la une ou une entrée du sommaire · La barre du bas passe en mode article : 2 / 13 · temps restant · Suivant.</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=lecture&amp;theme=light&amp;lus=" title="Article, lecture" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">4</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Je lis</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Corps à 18 px, interligne 1,66. Les sources deviennent des appels numérotés discrets (¹ ² ³), les notions un pointillé à l’encre. Progression au-dessus de la barre du bas.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : défiler · Le temps restant se met à jour (« ≈ 2 min restantes »).</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=notion&amp;theme=light&amp;lus=" title="Notion ouverte" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">5</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Je touche une notion</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">La définition s’ouvre sur place dans un panneau inférieur, le terme reste surligné. « Comprendre ↗ » annonce le site, « Voir dans le glossaire » y mène.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : toucher le terme · Fermer, Échap, toucher le voile ou balayer vers le bas ramène au même endroit.</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=source&amp;theme=light&amp;lus=" title="Source ouverte" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">6</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Je vérifie une source</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Média, date, titre et domaine d’abord. Ouvrir est un second geste explicite, jamais un accident. ‹ › permet de passer aux sources voisines.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : toucher l’appel, puis « Ouvrir la source ↗ » (nouvel onglet).</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=fin&amp;theme=light&amp;lus=" title="Fin d’article" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">7</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Je passe au suivant</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Notions clés, puis « Pour aller plus loin » et « Sources » repliés avec un aperçu du contenu. Le bloc « À suivre » annonce la suite et le reste de l’édition. L’article est marqué lu.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : un toucher, sur le bloc ou sur « Suivant » dans la barre du bas.</span>
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=europe&amp;etat=sommaire&amp;theme=light&amp;lus=editorial,essentiel,international" title="Sommaire ouvert" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px;">
+          <span style="grid-row: span 3; width: 36px; height: 36px; border-radius: 50%; background: #9b1c1f; color: #fbf9f4; display: flex; align-items: center; justify-content: center; font: 700 16px 'Source Sans 3';">8</span>
+          <strong style="font: 700 22px/1.2 'Playfair Display', serif;">Le sommaire, partout</strong>
+          <span style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;">Recherche en tête, puis les 14 entrées de l’édition : lues ✓, article en cours signalé par un filet. L’onglet « Cahiers &amp; outils » réunit cahiers, glossaire, archives, thème et taille du texte.</span>
+          <span style="font: 600 14px/1.45 'Source Sans 3'; color: #7c776f;">Geste : « Sommaire » dans la barre du bas, puis un titre.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. AUTRES GABARITS -->
+  <section id="gabarits" style="display: flex; flex-direction: column; gap: 28px;">
+    <div style="border-top: 3px double #1b1a18; padding-top: 14px; max-width: 1100px;">
+      <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">2 · Autres gabarits</p>
+      <h2 style="margin: 6px 0 0; font: 700 38px/1.1 'Playfair Display', serif;">L’essentiel, cahier, glossaire, recherche, menu</h2>
+    </div>
+    <div style="display: flex; gap: 40px; align-items: flex-start;">
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=essentiel&amp;etat=ouvert&amp;theme=light&amp;lus=" title="L’essentiel" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">L’essentiel du jour</strong>Brèves repliables numérotées, barre collante « Titres / Tout lire ». Les 12 titres tiennent en 1,5 écran au lieu de 8,6.</figcaption>
+      </figure>
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=cahier&amp;cahier=monde&amp;etat=rubrique&amp;theme=light&amp;lus=international" title="Cahier Monde" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">Cahier Monde</strong>Rubriques en puces collantes qui suivent la lecture. Cartes pleine largeur avec « Lire → » ; ici, l’article déjà lu passe en gris avec « Lu ✓ ».</figcaption>
+      </figure>
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=notions&amp;etat=lettres&amp;theme=light" title="Glossaire" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">Glossaire, en défilement</strong>Filtre et index alphabétique restent collés ; la lettre courante s’allume. Notions repliées sur une ligne avec l’amorce de la définition : 39 notions en 4 écrans au lieu de 13,8.</figcaption>
+      </figure>
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=notions&amp;etat=filtre&amp;theme=light" title="Glossaire filtré" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">Glossaire filtré</strong>« guerre » : les notions trouvées se déplient, les lettres vides s’éteignent dans l’index, le compte est annoncé au lecteur d’écran.</figcaption>
+      </figure>
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=recherche&amp;q=ormuz&amp;theme=light" title="Recherche" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">Recherche</strong>Champ collant avec effacement, filtres par cahier en puces (le menu déroulant reste pour le cas sans JavaScript), mots trouvés surlignés.</figcaption>
+      </figure>
+      <figure style="margin: 0; width: 390px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18, 0 20px 50px rgb(0 0 0 / .16);"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;etat=cahiers&amp;theme=light" title="Menu, cahiers et outils" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+        <figcaption style="font: 15.5px/1.5 'Source Sans 3'; color: #45423d;"><strong style="display: block; font: 700 20px/1.25 'Playfair Display', serif; color: #1b1a18;">Navigation globale</strong>Remplace la barre de 8 cahiers qui défilait sans le signaler. Chaque cahier et chaque rubrique sont à un toucher ; thème et taille du texte réglables avec libellés.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. SOMBRE -->
+  <section id="sombre" style="display: flex; flex-direction: column; gap: 28px; background: #151517; margin: 0 -80px; padding: 56px 80px 64px;">
+    <div style="border-top: 3px double #ebe6dc; padding-top: 14px; max-width: 1100px;">
+      <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #e7797a;">3 · Mode sombre</p>
+      <h2 style="margin: 6px 0 8px; font: 700 38px/1.1 'Playfair Display', serif; color: #ebe6dc;">Mêmes écrans, même soin</h2>
+      <p style="margin: 0; font: 17px/1.55 'Libre Caslon Text', serif; color: #c6c0b5; max-width: 900px;">Papier #151517, encre #ebe6dc, accent #e7797a. Les ombres disparaissent au profit des filets ; le voile des panneaux s’assombrit à 62 %. Contrastes : encre 14,6:1, gris 6,4:1, accent 6,6:1.</p>
+    </div>
+    <div style="display: flex; gap: 40px; align-items: flex-start;">
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;theme=dark&amp;lus=editorial" title="Une, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;etat=defile&amp;theme=dark&amp;lus=editorial" title="Essentiel, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=lecture&amp;theme=dark&amp;lus=" title="Lecture, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=notion&amp;theme=dark&amp;lus=" title="Notion, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=source&amp;theme=dark&amp;lus=" title="Source, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=international&amp;etat=fin&amp;theme=dark&amp;lus=" title="Fin d’article, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=article&amp;slug=europe&amp;etat=sommaire&amp;theme=dark&amp;lus=editorial,essentiel,international" title="Sommaire, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=essentiel&amp;etat=ouvert&amp;theme=dark&amp;lus=" title="L’essentiel, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=cahier&amp;cahier=monde&amp;etat=rubrique&amp;theme=dark&amp;lus=international" title="Cahier, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=notions&amp;etat=lettres&amp;theme=dark" title="Glossaire, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=recherche&amp;q=ormuz&amp;theme=dark" title="Recherche, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+      <div style="width: 390px; height: 844px; border-radius: 30px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #56544f;"><iframe src="Veilleur%20Prototype.dc.html?ecran=une&amp;etat=cahiers&amp;theme=dark" title="Menu, sombre" loading="lazy" style="width: 390px; height: 844px; border: 0; display: block;"></iframe></div>
+    </div>
+  </section>
+
+  <!-- 4. SYSTÈME -->
+  <section id="systeme" style="display: flex; flex-direction: column; gap: 32px;">
+    <div style="border-top: 3px double #1b1a18; padding-top: 14px; max-width: 1100px;">
+      <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">4 · Système de design</p>
+      <h2 style="margin: 6px 0 8px; font: 700 38px/1.1 'Playfair Display', serif;">Variables, puis composants et états</h2>
+      <p style="margin: 0; font: 17px/1.55 'Libre Caslon Text', serif; color: #45423d; max-width: 900px;">Palette et polices actuelles conservées : papier crème, encre, un seul accent bordeaux ; Playfair Display pour les titres, Libre Caslon Text pour la lecture, Source Sans 3 pour l’appareil (surtitres, méta, boutons). Seul le gris change, pour passer AA.</p>
+    </div>
+
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 40px; width: 820px;">
+
+        <div>
+          <p style="margin: 0 0 14px; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; border-top: 2px solid #1b1a18; padding-top: 8px;">Couleurs · clair / sombre</p>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #fbf9f4;"></span><span style="flex: 1; background: #151517;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--papier</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">#fbf9f4 · #151517</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #f3eee3;"></span><span style="flex: 1; background: #1e1e21;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--papier-2</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">encarts, cartes de brève</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #ebe4d6;"></span><span style="flex: 1; background: #2a2a2e;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--papier-3 <em style="font-weight: 400; color: #9b1c1f;">nouveau</em></strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">état appuyé</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #1b1a18;"></span><span style="flex: 1; background: #ebe6dc;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--encre</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">16,4:1 · 14,6:1</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #45423d;"></span><span style="flex: 1; background: #c6c0b5;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--encre-douce</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">chapô, définitions · 9,6:1</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #6b665e;"></span><span style="flex: 1; background: #9a948a;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--gris <em style="font-weight: 400; color: #9b1c1f;">corrigé</em></strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">#7c776f (4,3:1) → #6b665e (5,4:1)</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #9b1c1f;"></span><span style="flex: 1; background: #e7797a;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--accent</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">seul accent · 7,5:1 · 6,6:1</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #f4e3e0;"></span><span style="flex: 1; background: #3a2224;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--accent-doux</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">appel actif, cible d’ancre</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #ddd6c8;"></span><span style="flex: 1; background: #34332f;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--filet</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">séparations fines</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: #1b1a18;"></span><span style="flex: 1; background: #ebe6dc;"></span></div><strong style="font: 700 14px 'Source Sans 3';">--filet-fort</strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">filet de section, double filet</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><div style="display: flex; height: 64px; border: 1px solid #ddd6c8;"><span style="flex: 1; background: rgb(27 26 24 / .45);"></span><span style="flex: 1; background: rgb(0 0 0 / .62);"></span></div><strong style="font: 700 14px 'Source Sans 3';">--voile <em style="font-weight: 400; color: #9b1c1f;">nouveau</em></strong><span style="font: 13px 'Source Sans 3'; color: #45423d;">derrière les panneaux</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p style="margin: 0 0 14px; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; border-top: 2px solid #1b1a18; padding-top: 8px;">Typographie mobile (en rem, suit le réglage système et « Taille du texte »)</p>
+          <div style="display: grid; grid-template-columns: 190px 1fr; gap: 14px 20px; align-items: baseline;">
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Titre du journal<br>Playfair 900 · 2,6 rem</span><span style="font: 900 42px/1 'Playfair Display', serif;">Le Veilleur</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Titre d’article<br>Playfair 700 · 1,85 rem / 1,12</span><span style="font: 700 30px/1.12 'Playfair Display', serif;">Ormuz contre l’uranium</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Titre de carte<br>Playfair 700 · 1,28 rem</span><span style="font: 700 20.5px/1.18 'Playfair Display', serif;">Après Ceuta, le roi d’Espagne somme l’Europe</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Intertitre<br>Playfair 700 italique · 1,32 rem</span><span style="font: italic 700 21px/1.2 'Playfair Display', serif;">Le pétrole, arme et baromètre</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Chapô<br>Caslon · 1,1 rem / 1,5, romain</span><span style="font: 17.5px/1.5 'Libre Caslon Text', serif; color: #45423d;">À New York, l’Iran fait porter par le Qatar un plan en sept jours.</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Corps<br>Caslon · 1,1 rem / 1,66</span><span style="font: 17.5px/1.66 'Libre Caslon Text', serif;">Le rapport de force se lit aussi dans les flux<sup style="font: 700 11px 'Source Sans 3'; color: #9b1c1f;">10</sup>.</span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Surtitre<br>Source Sans 700 · 11,5 px, capitales</span><span style="font: 700 11.5px 'Source Sans 3'; letter-spacing: .09em; text-transform: uppercase; color: #9b1c1f;">Géopolitique &amp; conflits <span style="text-transform: none; letter-spacing: 0; font-size: 12.5px; color: #6b665e;">· Guerre d’Iran, la médiation qatarie</span></span>
+            <span style="font: 13px/1.4 'Source Sans 3'; color: #45423d;">Méta, boutons<br>Source Sans 600–700 · 13–15 px</span><span style="font: 13px 'Source Sans 3'; color: #6b665e;">Par <b style="color: #1b1a18;">Agent International</b> · Paris · 3 min · 15 sources</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+          <div>
+            <p style="margin: 0 0 14px; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; border-top: 2px solid #1b1a18; padding-top: 8px;">Espacements</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; font: 13px 'Source Sans 3'; color: #45423d;">
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 4px; height: 12px; background: #9b1c1f;"></i>--e1 · 4</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 8px; height: 12px; background: #9b1c1f;"></i>--e2 · 8</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 12px; height: 12px; background: #9b1c1f;"></i>--e3 · 12</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 16px; height: 12px; background: #9b1c1f;"></i>--e4 · 16</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 18px; height: 12px; background: #1b1a18;"></i>--marge · 18 (bords d’écran)</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 24px; height: 12px; background: #9b1c1f;"></i>--e5 · 24</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 32px; height: 12px; background: #9b1c1f;"></i>--e6 · 32</span>
+              <span style="display: flex; align-items: center; gap: 10px;"><i style="width: 48px; height: 12px; background: #9b1c1f;"></i>--e7 · 48</span>
+            </div>
+          </div>
+          <div>
+            <p style="margin: 0 0 14px; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; border-top: 2px solid #1b1a18; padding-top: 8px;">Rayons, cibles, hauteurs</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; font: 13.5px/1.45 'Source Sans 3'; color: #45423d;">
+              <span><b style="color: #1b1a18;">--r1 3 px</b> brèves · <b style="color: #1b1a18;">--r2 8 px</b> boutons de barre · <b style="color: #1b1a18;">--r3 16 px</b> panneaux · <b style="color: #1b1a18;">pilule</b> actions et puces</span>
+              <span><b style="color: #1b1a18;">--cible 44 px</b> minimum partout ; boutons d’action 48–50 px</span>
+              <span><b style="color: #1b1a18;">--haut-bandeau 48 px</b> · <b style="color: #1b1a18;">--haut-barre 58 px</b> + zone de sécurité iOS</span>
+              <span><b style="color: #1b1a18;">--duree .22 s</b> ; aucune animation sous <code>prefers-reduced-motion</code></span>
+              <span>Hiérarchie par filets : 1 px séparation, 2 px section, double filet 3 px pour les grandes coupures (une, sources, fin d’article). Aucune ombre sauf les panneaux.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 32px; align-items: flex-start;">
+        <div style="display: flex; flex-direction: column; gap: 10px;"><strong style="font: 700 15px 'Source Sans 3';">Composants · clair</strong><div style="width: 390px; height: 5240px; overflow: hidden; background: #fbf9f4; box-shadow: 0 0 0 1px #1b1a18;"><iframe src="Veilleur%20Prototype.dc.html?ecran=composants&amp;theme=light" title="Composants, clair" loading="lazy" style="width: 390px; height: 5240px; border: 0; display: block;"></iframe></div></div>
+        <div style="display: flex; flex-direction: column; gap: 10px;"><strong style="font: 700 15px 'Source Sans 3';">Composants · sombre</strong><div style="width: 390px; height: 5240px; overflow: hidden; background: #151517; box-shadow: 0 0 0 1px #1b1a18;"><iframe src="Veilleur%20Prototype.dc.html?ecran=composants&amp;theme=dark" title="Composants, sombre" loading="lazy" style="width: 390px; height: 5240px; border: 0; display: block;"></iframe></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PRIORITÉS -->
+  <section id="priorites" style="display: flex; gap: 64px; align-items: flex-start;">
+    <div style="width: 820px;">
+      <div style="border-top: 3px double #1b1a18; padding-top: 14px;">
+        <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">5 · Priorités</p>
+        <h2 style="margin: 6px 0 18px; font: 700 38px/1.1 'Playfair Display', serif;">Le plus d’effet pour le moins d’effort</h2>
+      </div>
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column;">
+        <sc-for list="{{ priorites }}" as="p" hint-placeholder-count="12">
+          <li style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 150px; gap: 16px; padding: 14px 0; border-bottom: 1px solid #cfc7b7; align-items: baseline;">
+            <span style="font: 700 22px 'Playfair Display', serif; color: #9b1c1f;">{{ p.n }}</span>
+            <span style="display: flex; flex-direction: column; gap: 3px;"><strong style="font: 700 19px/1.3 'Playfair Display', serif;">{{ p.titre }}</strong><span style="font: 15px/1.5 'Source Sans 3'; color: #45423d;">{{ p.detail }}</span></span>
+            <span style="font: 600 13.5px/1.5 'Source Sans 3'; color: #45423d;">Effet <b style="color: #1b1a18;">{{ p.effet }}</b><br>Effort <b style="color: #1b1a18;">{{ p.effort }}</b></span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+    <div style="width: 640px; display: flex; flex-direction: column; gap: 36px;">
+      <div>
+        <div style="border-top: 3px double #1b1a18; padding-top: 14px;">
+          <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">Données nouvelles pour les gabarits</p>
+        </div>
+        <ul style="margin: 12px 0 0; padding: 0; list-style: none;">
+          <sc-for list="{{ donnees }}" as="d" hint-placeholder-count="8">
+            <li style="padding: 11px 0; border-bottom: 1px solid #cfc7b7; display: flex; flex-direction: column; gap: 3px;"><code style="font: 600 14px ui-monospace, monospace; color: #7d1518;">{{ d.cle }}</code><span style="font: 15px/1.5 'Source Sans 3'; color: #45423d;">{{ d.texte }}</span></li>
+          </sc-for>
+        </ul>
+      </div>
+      <div>
+        <div style="border-top: 3px double #1b1a18; padding-top: 14px;">
+          <p style="margin: 0; font: 700 13px 'Source Sans 3'; letter-spacing: .12em; text-transform: uppercase; color: #9b1c1f;">Fichiers pour Claude Code</p>
+        </div>
+        <ul style="margin: 12px 0 0; padding: 0; list-style: none; font: 15px/1.5 'Source Sans 3'; color: #45423d;">
+          <li style="padding: 9px 0; border-bottom: 1px solid #cfc7b7;"><code style="color: #7d1518;">prototype/mobile.css</code> — à ajouter à la fin de <code>style.css</code>, jetons compris.</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid #cfc7b7;"><code style="color: #7d1518;">prototype/app.js</code> — remplace <code>app.js</code> ; reprend thème, progression et recherche.</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid #cfc7b7;"><code style="color: #7d1518;">prototype/INTEGRATION.md</code> — changements par fonction de <code>build.mjs</code>.</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid #cfc7b7;"><code style="color: #7d1518;">Veilleur Prototype.dc.html</code> — balisage de référence de chaque gabarit.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      priorites: [
+        { n: '1', titre: 'En-tête réduit et bandeau collant', detail: 'Masquer devise et barre d’outils, titre à 2,6 rem, bandeau de 48 px hors de la une. Rend 139 px à chaque page.', effet: 'fort', effort: 'CSS seul' },
+        { n: '2', titre: 'Réordonner l’article', detail: 'Notions clés juste après le texte, sources en dernier, par display: contents et order. Aucun changement de gabarit.', effet: 'fort', effort: 'CSS seul' },
+        { n: '3', titre: 'Contraste du gris, cibles de 44 px', detail: 'Un jeton à corriger ; hauteur minimale sur puces, liens de notion et boutons.', effet: 'AA', effort: 'CSS seul' },
+        { n: '4', titre: 'Accordéons « Pour aller plus loin » et « Sources »', detail: '<details open> dans le HTML, repliés par app.js sous 820 px, avec aperçu des médias dans le résumé.', effet: 'fort', effort: 'faible' },
+        { n: '5', titre: 'Barre du bas et feuille « Sommaire »', detail: 'Rendue par page() sur chaque page : édition du jour, cahiers, outils, thème, taille du texte.', effet: 'fort', effort: 'moyen' },
+        { n: '6', titre: 'Bloc « À suivre » et articles lus', detail: 'Remplace précédent / suivant ; lus mémorisés dans localStorage et affichés dans cartes et sommaires.', effet: 'fort', effort: 'faible' },
+        { n: '7', titre: 'Sommaire numéroté sur la une', detail: 'Nouvelle section, deux colonnes ; demande les titres courts (repli automatique possible).', effet: 'fort', effort: 'moyen' },
+        { n: '8', titre: 'Appels de source et panneau de source', detail: 'Numérotation des liens au build, <sup class="appel-num">, interception sous 820 px seulement.', effet: 'fort', effort: 'moyen' },
+        { n: '9', titre: 'Termes de notion dans le texte', detail: 'Repérage de la première occurrence au build ; le panneau lit « Notions clés » déjà présent dans la page.', effet: 'moyen', effort: 'moyen' },
+        { n: '10', titre: 'L’essentiel : carrousel sur la une, brèves repliables', detail: 'CSS sur le balisage existant, plus un lien et un id par brève.', effet: 'moyen', effort: 'faible' },
+        { n: '11', titre: 'Glossaire repliable, filtre, index collant', detail: 'Notions en <details>, index sorti de l’en-tête pour pouvoir coller.', effet: 'moyen', effort: 'faible' },
+        { n: '12', titre: 'Recherche : puces de cahier, surlignage, effacement', detail: 'Le select reste pour le cas sans JavaScript.', effet: 'modéré', effort: 'faible' },
+      ],
+      donnees: [
+        { cle: 'titre_court', texte: 'Front-matter, 2 à 6 mots, pour le sommaire de une et la feuille. Repli : segment avant « : » ou « , », sinon titre coupé à 2 lignes. Les titres courts du prototype sont des propositions.' },
+        { cle: 'rubriques[].court', texte: 'site.config.json : Géopolitique, Politique, Société, Sciences, Technologies, Idées… pour les surtitres étroits.' },
+        { cle: 'data-source="n" + sup.appel-num', texte: 'Calculé au build : chaque lien du corps reçoit le numéro de sa source (dédoublonnage par URL) ; un lien absent de la liste y est ajouté.' },
+        { cle: 'a.terme[data-notion]', texte: 'Première occurrence de chaque notion clé dans le corps, hors liens et intertitres. Le repérage automatique trouve 20 notions sur 40 dans cette édition ; ajouter une syntaxe [[terme|id]] dans la consigne des agents pour le reste.' },
+        { cle: 'chapo-1 / chapo-2', texte: 'Chapô découpé en deux phrases au build ; la une et les cartes n’affichent que la première sur téléphone.' },
+        { cle: 'article[data-minutes][data-cle]', texte: 'Temps de lecture et clé « date/slug », pour le temps restant et les articles lus ; position n / 13 et minutes restantes de l’édition calculées par pageArticle.' },
+        { cle: 'page({ edition })', texte: 'Toutes les pages (cahiers, glossaire, recherche) reçoivent l’édition du jour pour rendre la feuille Sommaire.' },
+        { cle: 'id="breve-n", id="source-n"', texte: 'Ancres pour lier une brève depuis la une et atteindre une source sans JavaScript.' },
+        { cle: 'body.page-une, html.js, data-taille', texte: 'Classe de page sur la une ; le script de tête pose .js et restaure la taille du texte comme il restaure déjà le thème.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

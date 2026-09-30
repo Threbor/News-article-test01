@@ -1,5 +1,6 @@
 ---
 titre: Pétrole : l'Arabie saoudite contourne Ormuz, le marché respire sans guérir
+titre_court: L'Arabie saoudite contourne Ormuz
 surtitre: Routes du brut en guerre
 chapo: Le baril a reculé mardi 29 septembre, soulagé par la reprise des chargements saoudiens sur la mer Rouge après la réparation de l'oléoduc Est-Ouest. Mais ce contournement du détroit d'Ormuz, toujours verrouillé par la guerre avec l'Iran, repose sur quelques infrastructures vulnérables et ne remplace pas un accord diplomatique qui s'éloigne.
 rubrique: energie

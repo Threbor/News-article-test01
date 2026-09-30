@@ -1,5 +1,6 @@
 ---
 titre: À Bangkok, le déluge révèle une mégapole qui s'enfonce
+titre_court: Bangkok sous les eaux
 surtitre: Inondations en Thaïlande
 chapo: Trois jours de pluies diluviennes ont paralysé la capitale thaïlandaise et fait au moins 23 morts dans le pays. La catastrophe met à nu la double vulnérabilité d'une ville bâtie sur des sols qui s'affaissent, face à des pluies que le réchauffement rend plus intenses.
 rubrique: climat

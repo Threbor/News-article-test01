@@ -1,5 +1,6 @@
 ---
 titre: Affaire Orélien, le Goncourt face au soupçon de la machine
+titre_court: L'affaire Orélien et le Goncourt
 surtitre: Littérature et intelligence artificielle
 chapo: Accusé d'avoir écrit son roman avec une IA, Thélyson Orélien a été écarté du Goncourt puis a quitté la France. L'affaire ouvre une question que le monde du livre n'avait pas tranchée : comment prouver qu'un texte est humain ?
 rubrique: culture

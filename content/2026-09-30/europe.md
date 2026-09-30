@@ -1,5 +1,6 @@
 ---
 titre: Après Ceuta, le roi d'Espagne somme l'Europe de partager le fardeau
+titre_court: Ceuta, l'Europe sommée de partager
 surtitre: Migrations et solidarité européenne
 chapo: Devant Emmanuel Macron, en visite d'État à Madrid, Felipe VI a jugé que l'Espagne ne pouvait porter seule la crise de Ceuta, frontière de toute l'Union. L'appel tombe à deux jours d'un Conseil des ministres de l'Intérieur des Vingt-Sept qui doit tirer les leçons de l'été.
 rubrique: europe

@@ -1,5 +1,6 @@
 ---
 titre: Avec ses agents toujours actifs, OpenAI dessine une frontière transatlantique de l'IA
+titre_court: Les agents d'OpenAI et l'Europe
 surtitre: OpenAI DevDay 2026
 chapo: Au lendemain de l'abandon de GPT-6.1 Astra, OpenAI a présenté mardi à San Francisco les « dots », des agents qui travaillent en continu pour leurs utilisateurs, et plus de vingt autres nouveautés. Ces assistants autonomes arrivent aux États-Unis, mais pas pour les abonnés individuels européens, signe que la régulation redessine déjà la carte de l'IA.
 rubrique: tech-ia

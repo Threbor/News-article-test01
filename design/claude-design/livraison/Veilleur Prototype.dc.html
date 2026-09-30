@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prototype/style.css">
+<link rel="stylesheet" href="prototype/mobile.css">
+<script src="prototype/donnees.js"></script>
+<script src="prototype/app.js"></script>
+</helmet>
+<sc-if value="{{ pret }}" hint-placeholder-val="{{ false }}">
+<a class="evitement" href="#contenu">Aller au contenu</a>
+<div class="progression" aria-hidden="true"><span></span></div>
+
+<div class="bandeau">
+  <a class="bandeau-nom" href="index.html">Le Veilleur</a>
+  <span class="bandeau-info">{{ bandeauInfo }}</span>
+</div>
+
+<header class="masthead">
+  <div class="barre">
+    <span class="barre-date">Mercredi 30 septembre 2026 · N<sup>o</sup> 2</span>
+    <span class="barre-outils">
+      <a href="recherche.html" class="outil"><span>Rechercher</span></a>
+      <a href="archives.html" class="outil"><span>Archives</span></a>
+      <button type="button" class="outil theme" aria-label="Changer de thème">◐</button>
+    </span>
+  </div>
+  <a class="titre-journal" href="index.html">Le Veilleur</a>
+  <p class="devise">Quotidien d'analyse — l'actualité du monde expliquée, sourcée, reliée</p>
+</header>
+<nav class="cahiers" aria-label="Cahiers"><div class="cahiers-defil">
+  <a href="index.html">La une</a>
+  <sc-for list="{{ cahiers }}" as="c" hint-placeholder-count="6"><a href="{{ c.href }}">{{ c.nom }}</a></sc-for>
+  <a href="notions.html">Notions</a>
+</div></nav>
+
+<!-- ============ UNE ============ -->
+<sc-if value="{{ estUne }}" hint-placeholder-val="{{ true }}">
+<main id="contenu">
+  <section class="une">
+    <div class="principal">
+      <p class="surtitre"><a href="rubrique/international.html"><span class="rub-long">{{ une.rn }}</span><span class="rub-court">Géopolitique</span></a><span class="sep">·</span><span class="sujet">{{ une.sujet }}</span></p>
+      <h1><a href="{{ une.href }}">{{ une.titre }}</a></h1>
+      <p class="chapo"><span class="chapo-1">{{ une.c1 }}</span> <span class="chapo-2">{{ une.c2 }}</span></p>
+      <p class="meta">Par <span class="auteur">{{ une.auteur }}</span> · {{ une.meta }}<span class="nb-sources">{{ une.nb }}</span></p>
+      <ul class="points grands"><sc-for list="{{ une.enBref }}" as="p"><li>{{ p }}</li></sc-for></ul>
+      <p class="lire"><a href="{{ une.href }}">Lire l’article <span class="lire-duree">· 3 min · 15 sources</span> →</a></p>
+    </div>
+    <aside class="edito">
+      <p class="surtitre">Éditorial</p>
+      <h2><a href="2026-09-30/editorial.html">{{ edito.titre }}</a></h2>
+      <p class="chapo">{{ edito.chapo }}</p>
+      <p class="meta">Par <span class="auteur">Le rédacteur en chef</span></p>
+      <p class="lire"><a href="2026-09-30/editorial.html">Lire l’éditorial <span class="lire-duree">· 1 min</span> →</a></p>
+    </aside>
+  </section>
+
+  <section class="section-sommaire" id="sommaire" aria-labelledby="t-sommaire">
+    <h2 class="titre-section" id="t-sommaire"><span>Au sommaire du N<sup>o</sup> 2</span><span class="compte">13 articles · 31 min</span></h2>
+    <ol class="sommaire sommaire-une">
+      <sc-for list="{{ sommaireUne }}" as="it" hint-placeholder-count="13">
+        <li class="sommaire-item"><a href="{{ it.href }}"><span class="sommaire-num">{{ it.num }}</span><span class="sommaire-rub">{{ it.rub }}</span><span class="sommaire-titre">{{ it.court }}</span></a></li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section class="section-essentiel" aria-labelledby="t-ess">
+    <h2 class="titre-section" id="t-ess"><a href="2026-09-30/essentiel.html">L’essentiel du jour</a><span class="compte">12 brèves · 4 min</span></h2>
+    <div class="carrousel">
+      <div class="breves" tabindex="0" aria-label="Les 12 brèves du jour, à faire défiler horizontalement">
+        <sc-for list="{{ brevesUne }}" as="b" hint-placeholder-count="3">
+          <article class="breve"><h3>{{ b.titre }}</h3><p>{{ b.texte }}</p><a class="breve-lien" href="{{ b.href }}">Lire la brève →</a></article>
+        </sc-for>
+      </div>
+      <div class="carrousel-nav">
+        <button type="button" class="carrousel-prec" aria-label="Brève précédente">←</button>
+        <span class="carrousel-position" aria-live="polite">1 / 12</span>
+        <button type="button" class="carrousel-suiv" aria-label="Brève suivante">→</button>
+        <a class="carrousel-tout" href="2026-09-30/essentiel.html">Tout lire à la suite →</a>
+      </div>
+    </div>
+  </section>
+
+  <sc-for list="{{ cahiersUne }}" as="c" hint-placeholder-count="3">
+    <section class="section-cahier">
+      <h2 class="titre-section"><a href="{{ c.href }}">{{ c.nom }}</a><span class="compte">{{ c.compte }}</span></h2>
+      <div class="grille">
+        <sc-for list="{{ c.articles }}" as="x">
+          <article class="carte">
+            <p class="surtitre"><a href="{{ x.rhref }}">{{ x.rn }}</a><span class="sep">·</span><span class="sujet">{{ x.sujet }}</span></p>
+            <h3><a href="{{ x.href }}">{{ x.titre }}</a></h3>
+            <p class="chapo"><span class="chapo-1">{{ x.c1 }}</span> <span class="chapo-2">{{ x.c2 }}</span></p>
+            <p class="meta">Par <span class="auteur">{{ x.auteur }}</span> · {{ x.meta }}<span class="nb-sources">{{ x.nb }}</span><span class="carte-lire" aria-hidden="true"><span class="a-lire">Lire →</span><span class="lu">Lu ✓</span></span></p>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <section class="section-notions">
+    <h2 class="titre-section">Les notions du jour</h2>
+    <ul class="puces-notions"><sc-for list="{{ notionsJour }}" as="n"><li><a href="{{ n.href }}">{{ n.terme }}</a></li></sc-for></ul>
+  </section>
+</main>
+</sc-if>
+
+<!-- ============ ARTICLE ============ -->
+<sc-if value="{{ estArticle }}" hint-placeholder-val="{{ false }}">
+<main id="contenu">
+<article class="article" data-minutes="{{ art.min }}" data-cle="{{ art.cle }}">
+  <header class="article-entete">
+    <p class="surtitre"><a href="{{ art.rhref }}"><span class="rub-long">{{ art.rn }}</span><span class="rub-court">{{ art.rc }}</span></a><sc-if value="{{ art.sujet }}"><span class="sep">·</span><span class="sujet">{{ art.sujet }}</span></sc-if></p>
+    <h1>{{ art.titre }}</h1>
+    <p class="chapo"><span class="chapo-1">{{ art.c1 }}</span> <span class="chapo-2">{{ art.c2 }}</span></p>
+    <p class="meta">Par <span class="auteur">{{ art.auteur }}</span> · {{ art.metaLongue }}<sc-if value="{{ art.nbSources }}"> · <a href="#sources">{{ art.nbSources }} sources</a></sc-if></p>
+    <sc-if value="{{ art.nbSources }}"><p class="lecture-aide">Touchez un <span class="appel-exemple">chiffre<sup>3</sup></span> pour voir la source, un <span class="terme-exemple">terme en pointillé</span> pour sa définition.</p></sc-if>
+  </header>
+  <div class="article-grille">
+    <div class="article-principal">
+      <sc-if value="{{ art.aEnBref }}">
+        <section class="en-bref"><h2>En bref</h2><ul><sc-for list="{{ art.enBref }}" as="p"><li>{{ p }}</li></sc-for></ul></section>
+      </sc-if>
+      {{ art.corpsEl }}
+      <sc-if value="{{ art.aPlusLoin }}">
+        <details class="plus-loin" open="{{ true }}" data-replie-mobile="1">
+          <summary><h2>Pour aller plus loin</h2><span class="resume-sources">{{ art.plResume }}</span><span class="bascule" aria-hidden="true"></span></summary>
+          <div class="ressources">
+            <sc-for list="{{ art.plusLoin }}" as="r">
+              <a class="ressource" href="{{ r.href }}" rel="noopener" target="_blank"><span class="ressource-domaine">{{ r.domaine }}</span><span class="ressource-titre">{{ r.titre }}</span><span class="ressource-detail">{{ r.detail }}</span></a>
+            </sc-for>
+          </div>
+        </details>
+      </sc-if>
+      <sc-if value="{{ art.nbSources }}">
+        <details class="sources" id="sources" open="{{ true }}" data-replie-mobile="1">
+          <summary><h2>Sources <span>{{ art.nbSources }}</span></h2><span class="resume-sources">{{ art.srcResume }}</span><span class="bascule" aria-hidden="true"></span></summary>
+          <ol>
+            <sc-for list="{{ art.sources }}" as="s">
+              <li id="{{ s.id }}"><a class="ext" href="{{ s.href }}" rel="noopener" target="_blank">{{ s.titre }}</a> <span class="source-detail">{{ s.detail }}</span> <span class="domaine">{{ s.domaine }}</span></li>
+            </sc-for>
+          </ol>
+        </details>
+      </sc-if>
+    </div>
+    <aside class="article-marge">
+      <sc-if value="{{ art.aNotions }}">
+        <section class="notions-cles"><h2>Notions clés</h2><dl>
+          <sc-for list="{{ art.notions }}" as="n">
+            <div id="{{ n.ancre }}"><dt><a href="{{ n.href }}">{{ n.terme }}</a></dt><dd>{{ n.def }} <a class="ext comprendre" href="{{ n.comprendre }}" rel="noopener" target="_blank">Comprendre</a></dd></div>
+          </sc-for>
+        </dl></section>
+      </sc-if>
+      <nav class="edition-nav" id="edition-nav" aria-label="Dans cette édition">
+        <h2>Dans cette édition</h2>
+        <ol><sc-for list="{{ sommaireTout }}" as="it"><li><a href="{{ it.href }}"><span>{{ it.rn }}</span>{{ it.titre }}</a></li></sc-for></ol>
+      </nav>
+    </aside>
+  </div>
+  <nav class="suite" aria-label="Suite de l’édition">
+    <p class="suite-bilan">{{ art.bilan }}</p>
+    <sc-if value="{{ art.prec }}"><a class="suite-prec" href="{{ art.prec.href }}"><span>← {{ art.prec.rn }}</span><strong class="suite-titre">{{ art.prec.titre }}</strong></a></sc-if>
+    <a class="suite-suiv" href="{{ art.suiv.href }}"><span>{{ art.suiv.etiquette }}</span><strong class="suite-titre">{{ art.suiv.titre }}</strong><em class="suite-cta">{{ art.suiv.cta }} →</em></a>
+    <a class="suite-retour" href="index.html#sommaire">Voir tout le sommaire</a>
+  </nav>
+</article>
+</main>
+</sc-if>
+
+<!-- ============ L'ESSENTIEL ============ -->
+<sc-if value="{{ estEssentiel }}" hint-placeholder-val="{{ false }}">
+<main id="contenu">
+<article class="article article-breves" data-minutes="4" data-cle="2026-09-30/essentiel">
+  <header class="article-entete">
+    <p class="surtitre"><a href="rubrique/essentiel.html">L'essentiel du jour</a></p>
+    <h1>{{ art.titre }}</h1>
+    <p class="chapo"><span class="chapo-1">{{ art.c1 }}</span> <span class="chapo-2">{{ art.c2 }}</span></p>
+    <p class="meta">Par <span class="auteur">Agent Veille</span> · mercredi 30 septembre 2026 · <a href="#sources">23 sources</a></p>
+  </header>
+  <div class="article-grille">
+    <div class="article-principal">
+      <div class="breves-outils">
+        <span>12 brèves · 4 min</span>
+        <div class="segmente" role="group" aria-label="Affichage des brèves">
+          <button type="button" data-mode-breves="titres" aria-pressed="true">Titres</button>
+          <button type="button" data-mode-breves="tout" aria-pressed="false">Tout lire</button>
+        </div>
+      </div>
+      <div class="breves">
+        <sc-for list="{{ art.breves }}" as="b" hint-placeholder-count="6">
+          <details class="breve" id="{{ b.id }}" open="{{ true }}" data-replie-mobile="1">
+            <summary><span class="breve-num">{{ b.n }}</span><h3>{{ b.titre }}</h3></summary>
+            {{ b.el }}
+          </details>
+        </sc-for>
+      </div>
+      <details class="sources" id="sources" open="{{ true }}" data-replie-mobile="1">
+        <summary><h2>Sources <span>{{ art.nbSources }}</span></h2><span class="resume-sources">{{ art.srcResume }}</span><span class="bascule" aria-hidden="true"></span></summary>
+        <ol>
+          <sc-for list="{{ art.sources }}" as="s">
+            <li id="{{ s.id }}"><a class="ext" href="{{ s.href }}" rel="noopener" target="_blank">{{ s.titre }}</a> <span class="source-detail">{{ s.detail }}</span> <span class="domaine">{{ s.domaine }}</span></li>
+          </sc-for>
+        </ol>
+      </details>
+    </div>
+    <aside class="article-marge">
+      <nav class="edition-nav" id="edition-nav" aria-label="Dans cette édition">
+        <h2>Dans cette édition</h2>
+        <ol><sc-for list="{{ sommaireTout }}" as="it"><li><a href="{{ it.href }}"><span>{{ it.rn }}</span>{{ it.titre }}</a></li></sc-for></ol>
+      </nav>
+    </aside>
+  </div>
+  <nav class="suite" aria-label="Suite de l’édition">
+    <p class="suite-bilan">{{ art.bilan }}</p>
+    <a class="suite-prec" href="{{ art.prec.href }}"><span>← {{ art.prec.rn }}</span><strong class="suite-titre">{{ art.prec.titre }}</strong></a>
+    <a class="suite-suiv" href="{{ art.suiv.href }}"><span>{{ art.suiv.etiquette }}</span><strong class="suite-titre">{{ art.suiv.titre }}</strong><em class="suite-cta">{{ art.suiv.cta }} →</em></a>
+    <a class="suite-retour" href="index.html#sommaire">Voir tout le sommaire</a>
+  </nav>
+</article>
+</main>
+</sc-if>
+
+<!-- ============ CAHIER ============ -->
+<sc-if value="{{ estCahier }}" hint-placeholder-val="{{ false }}">
+<main id="contenu">
+  <header class="entete-liste">
+    <p class="surtitre">Cahier</p>
+    <h1>{{ cah.nom }}</h1>
+  </header>
+  <p class="rubriques-cahier"><sc-for list="{{ cah.rubs }}" as="r"><a href="{{ r.ancre }}">{{ r.nom }}</a></sc-for></p>
+  <sc-for list="{{ cah.rubs }}" as="r">
+    <section class="section-cahier" id="{{ r.id }}">
+      <h2 class="titre-section"><a href="{{ r.href }}">{{ r.nom }}</a><span class="compte">{{ r.compte }}</span></h2>
+      <p class="intro">{{ r.intro }}</p>
+      <div class="grille">
+        <sc-for list="{{ r.articles }}" as="x">
+          <article class="carte">
+            <p class="surtitre"><a href="{{ x.rhref }}">{{ x.rn }}</a><span class="sep">·</span><span class="sujet">{{ x.sujet }}</span></p>
+            <h3><a href="{{ x.href }}">{{ x.titre }}</a></h3>
+            <p class="chapo"><span class="chapo-1">{{ x.c1 }}</span> <span class="chapo-2">{{ x.c2 }}</span></p>
+            <p class="meta">Par <span class="auteur">{{ x.auteur }}</span> · {{ x.meta }}<span class="nb-sources">{{ x.nb }}</span><span class="carte-lire" aria-hidden="true"><span class="a-lire">Lire →</span><span class="lu">Lu ✓</span></span></p>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+</main>
+</sc-if>
+
+<!-- ============ GLOSSAIRE ============ -->
+<sc-if value="{{ estNotions }}" hint-placeholder-val="{{ false }}">
+<main id="contenu">
+  <header class="entete-liste">
+    <p class="surtitre">Glossaire</p>
+    <h1>Les notions de l’actualité</h1>
+    <p class="chapo">Chaque article explique les concepts nécessaires pour le comprendre. Ils sont réunis ici, avec une ressource de référence pour approfondir et les articles où ils apparaissent.</p>
+  </header>
+  <div class="glossaire-outils">
+    <label class="visuel-cache" for="filtre-notions">Filtrer les notions</label>
+    <input id="filtre-notions" class="champ" type="search" placeholder="Filtrer les 39 notions" autocomplete="off" style="padding-left: 16px;">
+    <p class="lettres"><sc-for list="{{ groupes }}" as="g"><a href="{{ g.ancre }}">{{ g.L }}</a></sc-for></p>
+  </div>
+  <p class="glossaire-etat"><span id="glossaire-compte" aria-live="polite">39 notions</span><button type="button" class="lien-bouton" data-tout-deplier="" aria-pressed="false">Tout déplier</button></p>
+  <div class="glossaire">
+    <sc-for list="{{ groupes }}" as="g">
+      <section id="{{ g.id }}">
+        <h2 class="lettre">{{ g.L }}</h2>
+        <sc-for list="{{ g.items }}" as="n">
+          <div class="notion" id="{{ n.id }}">
+            <details open="{{ true }}" data-replie-mobile="1">
+              <summary><span class="notion-terme">{{ n.terme }}</span><span class="notion-apercu">{{ n.def }}</span></summary>
+              <div class="notion-corps">
+                <p>{{ n.def }}</p>
+                <p class="notion-liens"><a class="ext" href="{{ n.comprendre }}" rel="noopener" target="_blank">Comprendre · {{ n.domaine }}</a><sc-for list="{{ n.liens }}" as="l"><a href="{{ l.href }}">{{ l.titre }}</a></sc-for></p>
+              </div>
+            </details>
+          </div>
+        </sc-for>
+      </section>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<!-- ============ RECHERCHE ============ -->
+<sc-if value="{{ estRecherche }}" hint-placeholder-val="{{ false }}">
+<main id="contenu">
+  <header class="entete-liste">
+    <p class="surtitre">Recherche</p>
+    <h1>Explorer les archives</h1>
+  </header>
+  <form class="recherche" role="search" action="recherche.html">
+    <div class="recherche-champ">
+      <label class="visuel-cache" for="q">Rechercher</label>
+      <input id="q" name="q" type="search" placeholder="Un pays, une notion, une personnalité…" autocomplete="off">
+      <button type="button" class="recherche-effacer" aria-label="Effacer la recherche" hidden="{{ true }}">×</button>
+    </div>
+    <label class="visuel-cache" for="rub">Rubrique</label>
+    <select id="rub"><option value="">Toutes les rubriques</option><sc-for list="{{ rubriques }}" as="r"><option value="{{ r.id }}">{{ r.nom }}</option></sc-for></select>
+    <div class="filtres" role="group" aria-label="Filtrer par cahier">
+      <button type="button" class="puce" data-rubs="" aria-pressed="true">Tout</button>
+      <sc-for list="{{ filtres }}" as="f"><button type="button" class="puce" data-rubs="{{ f.rubs }}" aria-pressed="false">{{ f.nom }}</button></sc-for>
+    </div>
+  </form>
+  <p class="recherche-etat" id="etat" aria-live="polite"></p>
+  <div class="suggestions"><sc-for list="{{ suggestions }}" as="s"><button type="button" class="puce" data-q="{{ s }}">{{ s }}</button></sc-for></div>
+  <div class="grille" id="resultats"></div>
+</main>
+</sc-if>
+
+<!-- ============ COMPOSANTS (spécimens) ============ -->
+<sc-if value="{{ estComposants }}" hint-placeholder-val="{{ false }}">
+<main id="contenu" data-specimen="">
+  <header class="entete-liste"><p class="surtitre">Système de design</p><h1>Composants et états</h1><p class="chapo">Rendu réel des classes de mobile.css à 390 px.</p></header>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 12px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">01 · Bandeau réduit</p>
+    <div class="bandeau" style="position: relative; margin: 0 -18px;"><span class="bandeau-nom">Le Veilleur</span><span class="bandeau-info">N° 2 · Géopolitique</span></div>
+    <p style="margin: 8px 0 0; font: 13px/1.45 var(--sans); color: var(--gris);">48 px, collant. Sur la une, il apparaît quand le titre du journal sort de l’écran.</p>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 12px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">02 · Barre du bas</p>
+    <p style="margin: 0 0 6px; font: 600 12.5px var(--sans); color: var(--gris);">Pages de liste · « Cahiers » appuyé · « Rechercher » actif</p>
+    <nav class="barre-bas" style="position: relative; inset: auto; margin: 0 -18px; z-index: auto;">
+      <button type="button" class="bb-bouton"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><line x1="9" y1="6" x2="21" y2="6"></line><line x1="9" y1="12" x2="21" y2="12"></line><line x1="9" y1="18" x2="21" y2="18"></line><circle cx="4.5" cy="6" r="1"></circle><circle cx="4.5" cy="12" r="1"></circle><circle cx="4.5" cy="18" r="1"></circle></svg>Sommaire</button>
+      <button type="button" class="bb-bouton est-appuye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2;"><rect x="4" y="4" width="7" height="7"></rect><rect x="13" y="4" width="7" height="7"></rect><rect x="4" y="13" width="7" height="7"></rect><rect x="13" y="13" width="7" height="7"></rect></svg>Cahiers</button>
+      <button type="button" class="bb-bouton" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.5" y1="15.5" x2="21" y2="21"></line></svg>Rechercher</button>
+    </nav>
+    <p style="margin: 14px 0 6px; font: 600 12.5px var(--sans); color: var(--gris);">Article · position et temps restant · « Suivant » au repos</p>
+    <nav class="barre-bas barre-bas-article" style="position: relative; inset: auto; margin: 0 -18px; z-index: auto;">
+      <button type="button" class="bb-bouton"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><line x1="9" y1="6" x2="21" y2="6"></line><line x1="9" y1="12" x2="21" y2="12"></line><line x1="9" y1="18" x2="21" y2="18"></line><circle cx="4.5" cy="6" r="1"></circle><circle cx="4.5" cy="12" r="1"></circle><circle cx="4.5" cy="18" r="1"></circle></svg>Sommaire</button>
+      <p class="bb-etat"><span class="bb-position">2 / 13</span><span class="bb-reste">≈ 2 min restantes</span></p>
+      <a class="bb-suivant" href="#">Suivant →</a>
+    </nav>
+    <p style="margin: 14px 0 6px; font: 600 12.5px var(--sans); color: var(--gris);">« Suivant » appuyé · fin d’édition</p>
+    <nav class="barre-bas barre-bas-article" style="position: relative; inset: auto; margin: 0 -18px; z-index: auto;">
+      <button type="button" class="bb-bouton est-appuye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><line x1="9" y1="6" x2="21" y2="6"></line><line x1="9" y1="12" x2="21" y2="12"></line><line x1="9" y1="18" x2="21" y2="18"></line><circle cx="4.5" cy="6" r="1"></circle><circle cx="4.5" cy="12" r="1"></circle><circle cx="4.5" cy="18" r="1"></circle></svg>Sommaire</button>
+      <p class="bb-etat"><span class="bb-position">13 / 13</span><span class="bb-reste">Lecture terminée</span></p>
+      <a class="bb-suivant est-appuye" href="#">Sommaire →</a>
+    </nav>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 4px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">03 · Carte d’article</p>
+    <p style="margin: 0; font: 600 12.5px var(--sans); color: var(--gris);">Repos · appuyée · déjà lue</p>
+    <div class="grille">
+      <article class="carte"><p class="surtitre"><a href="#">Europe</a></p><h3><a href="#">Après Ceuta, le roi d’Espagne somme l’Europe de partager le fardeau</a></h3><p class="chapo"><span class="chapo-1">Devant Emmanuel Macron, en visite d’État à Madrid, Felipe VI a jugé que l’Espagne ne pouvait porter seule la crise de Ceuta, frontière de toute l’Union.</span></p><p class="meta">Par <span class="auteur">Agent Europe</span> · Madrid · 3 min · <span class="nb-sources">16 sources</span><span class="carte-lire"><span class="a-lire">Lire →</span><span class="lu">Lu ✓</span></span></p></article>
+      <article class="carte est-appuye"><p class="surtitre"><a href="#">Sud global</a></p><h3><a href="#">Au Burkina Faso, l’or raffiné à domicile se heurte au verrou de Londres</a></h3><p class="meta">Par <span class="auteur">Agent Sud</span> · Paris · 2 min · <span class="nb-sources">14 sources</span><span class="carte-lire"><span class="a-lire">Lire →</span><span class="lu">Lu ✓</span></span></p></article>
+      <article class="carte est-lu"><p class="surtitre"><a href="#">Géopolitique &amp; conflits</a></p><h3><a href="#">Ormuz contre l’uranium, le marchandage impossible entre Washington et Téhéran</a></h3><p class="meta">Par <span class="auteur">Agent International</span> · Paris · 3 min · <span class="nb-sources">15 sources</span><span class="carte-lire"><span class="a-lire">Lire →</span><span class="lu">Lu ✓</span></span></p></article>
+    </div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 4px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">04 · Entrée de sommaire</p>
+    <p style="margin: 0 0 6px; font: 600 12.5px var(--sans); color: var(--gris);">Une, deux colonnes · repos et lu</p>
+    <ol class="sommaire sommaire-une" style="grid-template-rows: auto;">
+      <li class="sommaire-item est-lu" style="border-right: 1px solid var(--filet); padding-right: 10px;"><a href="#"><span class="sommaire-num">01</span><span class="sommaire-rub">Éditorial</span><span class="sommaire-titre">Le retour des péages</span></a></li>
+      <li class="sommaire-item" style="padding-left: 10px;"><a href="#"><span class="sommaire-num">08</span><span class="sommaire-rub">Énergie</span><span class="sommaire-titre">L’Arabie saoudite contourne Ormuz</span></a></li>
+    </ol>
+    <p style="margin: 14px 0 6px; font: 600 12.5px var(--sans); color: var(--gris);">Feuille · lu · en cours · repos</p>
+    <ol class="sommaire">
+      <li class="sommaire-item est-lu"><a href="#"><span class="sommaire-num">01</span><span class="sommaire-rub">Éditorial</span><span class="sommaire-titre">Le retour des péages</span><span class="sommaire-duree">1 min</span></a></li>
+      <li class="sommaire-item" aria-current="true"><a href="#"><span class="sommaire-num">02</span><span class="sommaire-rub">Géopolitique</span><span class="sommaire-titre">Ormuz contre l’uranium</span><span class="sommaire-duree">3 min</span></a></li>
+      <li class="sommaire-item"><a href="#"><span class="sommaire-num">03</span><span class="sommaire-rub">Europe</span><span class="sommaire-titre">L’Espagne et le fardeau de Ceuta</span><span class="sommaire-duree">3 min</span></a></li>
+    </ol>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 4px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">05 · Brève</p>
+    <p style="margin: 0 0 8px; font: 600 12.5px var(--sans); color: var(--gris);">Carte de carrousel (une) · amorce de la suivante</p>
+    <div class="section-essentiel" style="margin: 0;"><div class="carrousel"><div class="breves">
+      <article class="breve"><h3>Les dernières forces américaines quittent l’Irak</h3><p>Les forces américaines doivent avoir quitté leurs dernières bases en Irak d’ici au mercredi 30 septembre, un départ célébré comme une victoire par l’Iran et ses alliés.</p><a class="breve-lien" href="#">Lire la brève →</a></article>
+      <article class="breve"><h3>Iran : Washington prêt à lever des sanctions ? Trump dément</h3><p>Selon Axios, des responsables américains affirment que Donald Trump serait prêt à accorder à l’Iran un allègement des sanctions.</p><a class="breve-lien" href="#">Lire la brève →</a></article>
+    </div>
+    <div class="carrousel-nav"><button type="button" class="carrousel-prec" disabled="{{ true }}" aria-label="Brève précédente">←</button><span class="carrousel-position">1 / 12</span><button type="button" class="carrousel-suiv" aria-label="Brève suivante">→</button><a class="carrousel-tout" href="#">Tout lire à la suite →</a></div></div></div>
+    <p style="margin: 16px 0 0; font: 600 12.5px var(--sans); color: var(--gris);">Brève repliable (L’essentiel) · fermée · ouverte</p>
+    <div class="article-breves"><div class="breves">
+      <details class="breve"><summary><span class="breve-num">4</span><h3>Birmanie : au moins 49 morts dans le bombardement d’un marché</h3></summary><div class="breve-texte"><p>…</p></div></details>
+      <details class="breve" open="{{ true }}"><summary><span class="breve-num">5</span><h3>Niger : 57 membres des forces de sécurité tués par l’État islamique</h3></summary><div class="breve-texte"><p>Au moins 57 membres des forces de sécurité nigériennes ont été tués dans deux attaques de la branche sahélienne de l’État islamique, selon <a class="ext appel" href="#">The Canberra Times<sup class="appel-num">11</sup></a>.</p></div></details>
+    </div></div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 4px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">06 · Appel de source et terme de notion</p>
+    <p style="margin: 0 0 8px; font: 600 12.5px var(--sans); color: var(--gris);">Repos, puis actif (feuille ouverte)</p>
+    <div class="corps"><p>Un responsable américain prévenait qu’aucun accord ne mettrait fin à la guerre sans traiter le programme nucléaire, <a class="ext appel" href="#">rapporte Al Jazeera<sup class="appel-num">1</sup></a>. Le <a class="terme" href="#">détroit d’Ormuz</a> reste fermé.</p>
+    <p>Donald Trump l’a écartée : « Je rejette leur accord », <a class="ext appel est-actif" href="#">a-t-il déclaré<sup class="appel-num">3</sup></a>, tandis que le <a class="terme est-actif" href="#">blocus maritime</a> se poursuit.</p></div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 10px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">07 · Panneau de notion</p>
+    <div style="background: var(--papier); border: 1px solid var(--filet); border-radius: 16px 16px 0 0; box-shadow: var(--ombre-feuille); padding: 0 20px 20px;">
+      <span class="feuille-poignee"></span>
+      <div class="feuille-entete"><p class="feuille-etiquette">Notion</p><button type="button" class="feuille-fermer">Fermer ✕</button></div>
+      <h2 class="feuille-titre">Détroit d’Ormuz</h2>
+      <p class="feuille-texte">Passage maritime entre l’Iran et la péninsule arabique (Émirats, Oman), large d’environ 55 km au minimum, par où transite une part majeure du commerce mondial de pétrole.</p>
+      <div class="feuille-actions"><a class="bouton bouton-plein" href="#">Comprendre ↗ <small>fr.wikipedia.org</small></a><a class="bouton" href="#">Voir dans le glossaire</a></div>
+    </div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 10px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">08 · Panneau de source</p>
+    <div style="background: var(--papier); border: 1px solid var(--filet); border-radius: 16px 16px 0 0; box-shadow: var(--ombre-feuille); padding: 0 20px 20px;">
+      <span class="feuille-poignee"></span>
+      <div class="feuille-entete"><p class="feuille-etiquette">Source 3 <span>sur 15</span></p><button type="button" class="feuille-fermer">Fermer ✕</button></div>
+      <p class="feuille-media">NBC News <span>· 26 septembre 2026</span></p>
+      <h2 class="feuille-titre feuille-source-titre">Trump says he has rejected Iranian proposal to reopen Strait of Hormuz</h2>
+      <div class="feuille-actions"><a class="bouton bouton-plein" href="#">Ouvrir la source ↗ <small>nbcnews.com</small></a>
+        <div class="feuille-pagination"><button type="button" class="bouton bouton-discret">‹ 2</button><button type="button" class="bouton bouton-discret">Toutes les sources</button><button type="button" class="bouton bouton-discret">4 ›</button></div></div>
+    </div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 8px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">09 · Accordéon</p>
+    <details class="plus-loin"><summary><h2>Pour aller plus loin</h2><span class="resume-sources">5 ressources · CFR, Congrès américain, École militaire…</span><span class="bascule" aria-hidden="true"></span></summary><div class="ressources"></div></details>
+    <details class="sources" open="{{ true }}"><summary><h2>Sources <span>15</span></h2><span class="resume-sources">Al Jazeera, NBC News, The Hill et 10 autres médias</span><span class="bascule" aria-hidden="true"></span></summary>
+      <ol><li><a class="ext" href="#">Iran’s Araghchi meets Qatari mediators as US calls for nuclear talks</a> <span class="source-detail">Al Jazeera, 29 septembre 2026</span> <span class="domaine">aljazeera.com</span></li><li><a class="ext" href="#">US-Iran talks in New York: What’s the latest?</a> <span class="source-detail">Al Jazeera, 29 septembre 2026</span> <span class="domaine">aljazeera.com</span></li></ol></details>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 4px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">10 · Bouton « Suivant » de fin d’article</p>
+    <nav class="suite" style="margin-top: 8px;">
+      <p class="suite-bilan">Article 2 sur 13 · encore 11 articles, 27 min</p>
+      <a class="suite-suiv" href="#"><span>À suivre · 3 / 13 · Europe →</span><strong class="suite-titre">Après Ceuta, le roi d’Espagne somme l’Europe de partager le fardeau</strong><em class="suite-cta">Lire l’article suivant · 3 min →</em></a>
+      <a class="suite-retour" href="#">Voir tout le sommaire</a>
+    </nav>
+    <p style="margin: 14px 0 8px; font: 600 12.5px var(--sans); color: var(--gris);">Boutons · plein · contour · discret · appuyé · inactif</p>
+    <div style="display: grid; gap: 8px;">
+      <a class="bouton bouton-plein" href="#">Ouvrir la source ↗ <small>nbcnews.com</small></a>
+      <a class="bouton" href="#">Voir dans le glossaire</a>
+      <button type="button" class="bouton bouton-discret">Toutes les sources</button>
+      <a class="bouton bouton-plein est-appuye" href="#">Appuyé</a>
+      <button type="button" class="bouton" disabled="{{ true }}">Inactif</button>
+    </div>
+  </section>
+
+  <section style="border-top: 2px solid var(--filet-fort); padding: 10px 0 22px;">
+    <p style="margin: 0 0 10px; font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase;">11 · Onglets, puces, réglages, champ</p>
+    <div class="onglets" role="tablist" style="position: static;"><button type="button" class="onglet" aria-selected="true">Cette édition</button><button type="button" class="onglet" aria-selected="false">Cahiers &amp; outils</button></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0;"><span class="puce est-actif">Tout</span><span class="puce">Monde</span><span class="puce est-appuye">France (appuyée)</span></div>
+    <div class="reglages"><div class="reglage">Thème <div class="segmente"><button type="button" aria-pressed="true">Clair</button><button type="button" aria-pressed="false">Sombre</button><button type="button" aria-pressed="false">Auto</button></div></div><div class="reglage">Taille du texte <div class="segmente"><button type="button">A−</button><button type="button">A+</button></div></div></div>
+    <div class="feuille-recherche" style="margin-top: 16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.5" y1="15.5" x2="21" y2="21"></line></svg><input class="champ" type="search" placeholder="Rechercher un article, une notion…" aria-label="Exemple de champ"></div>
+  </section>
+</main>
+</sc-if>
+
+<footer class="pied">
+  <p class="pied-nom">Le Veilleur</p>
+  <p>Quotidien d'analyse — l'actualité du monde expliquée, sourcée, reliée.</p>
+  <p>Articles rédigés chaque matin par des agents d’intelligence artificielle à partir des sources liées dans le texte. Chaque fait est cliquable : vérifiez, comparez, approfondissez.</p>
+  <p><a href="archives.html">Archives</a> · <a href="notions.html">Glossaire des notions</a> · <a href="recherche.html">Recherche</a> · <a href="flux.xml">Flux RSS</a></p>
+</footer>
+
+<!-- Barre du bas -->
+<sc-if value="{{ barreArticle }}" hint-placeholder-val="{{ false }}">
+  <nav class="barre-bas barre-bas-article" aria-label="Navigation dans l’édition">
+    <a class="bb-bouton" href="#edition-nav" data-ouvrir="edition" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><line x1="9" y1="6" x2="21" y2="6"></line><line x1="9" y1="12" x2="21" y2="12"></line><line x1="9" y1="18" x2="21" y2="18"></line><circle cx="4.5" cy="6" r="1"></circle><circle cx="4.5" cy="12" r="1"></circle><circle cx="4.5" cy="18" r="1"></circle></svg>Sommaire</a>
+    <p class="bb-etat"><span class="bb-position">{{ bb.position }}</span><span class="bb-reste">{{ bb.reste }}</span></p>
+    <a class="bb-suivant" href="{{ bb.href }}" aria-label="{{ bb.aria }}">{{ bb.label }} →</a>
+  </nav>
+</sc-if>
+<sc-if value="{{ barreListe }}" hint-placeholder-val="{{ true }}">
+  <nav class="barre-bas" aria-label="Navigation">
+    <a class="bb-bouton" href="index.html#sommaire" data-ouvrir="edition" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><line x1="9" y1="6" x2="21" y2="6"></line><line x1="9" y1="12" x2="21" y2="12"></line><line x1="9" y1="18" x2="21" y2="18"></line><circle cx="4.5" cy="6" r="1"></circle><circle cx="4.5" cy="12" r="1"></circle><circle cx="4.5" cy="18" r="1"></circle></svg>Sommaire</a>
+    <a class="bb-bouton" href="cahier/monde.html" data-ouvrir="cahiers" aria-haspopup="dialog" aria-current="{{ bbCahiers }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2;"><rect x="4" y="4" width="7" height="7"></rect><rect x="13" y="4" width="7" height="7"></rect><rect x="4" y="13" width="7" height="7"></rect><rect x="13" y="13" width="7" height="7"></rect></svg>Cahiers</a>
+    <a class="bb-bouton" href="recherche.html" aria-current="{{ bbRecherche }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.5" y1="15.5" x2="21" y2="21"></line></svg>Rechercher</a>
+  </nav>
+</sc-if>
+
+<!-- Feuille « Sommaire » : rendue dans chaque page, ouverte par la barre du bas -->
+<dialog class="feuille feuille-sommaire" id="feuille-sommaire" aria-label="Sommaire et navigation">
+  <span class="feuille-poignee" aria-hidden="true"></span>
+  <div class="feuille-entete"><p class="feuille-etiquette">N<sup>o</sup> 2 <span>· Mercredi 30 septembre 2026</span></p><button type="button" class="feuille-fermer">Fermer <span aria-hidden="true">✕</span></button></div>
+  <form class="feuille-recherche" action="recherche.html" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width: 2; stroke-linecap: round;"><circle cx="10.5" cy="10.5" r="6.5"></circle><line x1="15.5" y1="15.5" x2="21" y2="21"></line></svg>
+    <input class="champ" name="q" type="search" placeholder="Rechercher un article, une notion…" aria-label="Rechercher">
+  </form>
+  <div class="onglets" role="tablist" aria-label="Navigation">
+    <button type="button" class="onglet" role="tab" id="onglet-edition" data-onglet="edition" aria-controls="panneau-edition" aria-selected="true">Cette édition</button>
+    <button type="button" class="onglet" role="tab" id="onglet-cahiers" data-onglet="cahiers" aria-controls="panneau-cahiers" aria-selected="false">Cahiers &amp; outils</button>
+  </div>
+  <div class="panneau" id="panneau-edition" role="tabpanel" aria-labelledby="onglet-edition">
+    <ol class="sommaire">
+      <sc-for list="{{ sommaireFeuille }}" as="it" hint-placeholder-count="6">
+        <li class="sommaire-item" aria-current="{{ it.courant }}"><a href="{{ it.href }}"><span class="sommaire-num">{{ it.num }}</span><span class="sommaire-rub">{{ it.rub }}</span><span class="sommaire-titre">{{ it.court }}</span><span class="sommaire-duree">{{ it.duree }}</span></a></li>
+      </sc-for>
+    </ol>
+  </div>
+  <div class="panneau" id="panneau-cahiers" role="tabpanel" aria-labelledby="onglet-cahiers" hidden="{{ true }}">
+    <ul class="liste-cahiers">
+      <sc-for list="{{ cahiersFeuille }}" as="c">
+        <li><a class="cahier-lien" href="{{ c.href }}">{{ c.nom }}</a><div class="cahier-rubs"><sc-for list="{{ c.rubs }}" as="r"><a class="puce" href="{{ r.href }}">{{ r.nom }}</a></sc-for></div></li>
+      </sc-for>
+    </ul>
+    <p class="panneau-titre">Outils</p>
+    <ul class="liens-outils"><li><a href="notions.html">Glossaire</a></li><li><a href="recherche.html">Recherche</a></li><li><a href="archives.html">Archives</a></li><li><a href="flux.xml">Flux RSS</a></li></ul>
+    <p class="panneau-titre">Lecture</p>
+    <div class="reglages">
+      <div class="reglage">Thème <div class="segmente" role="group" aria-label="Thème"><button type="button" data-theme-choix="light" aria-pressed="false">Clair</button><button type="button" data-theme-choix="dark" aria-pressed="false">Sombre</button><button type="button" data-theme-choix="auto" aria-pressed="true">Auto</button></div></div>
+      <div class="reglage">Taille du texte <div class="segmente" role="group" aria-label="Taille du texte"><button type="button" data-taille-pas="-1" aria-label="Réduire le texte">A−</button><button type="button" data-taille-pas="1" aria-label="Agrandir le texte">A+</button></div></div>
+    </div>
+  </div>
+</dialog>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position: fixed; left: 16px; right: 16px; bottom: 76px; z-index: 40; padding: 12px 16px; border-radius: 10px; background: var(--encre); color: var(--papier); font: 600 14px/1.4 var(--sans); text-align: center;">{{ toast }}</div>
+</sc-if>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { pret: false, ecran: 'une', slug: 'international', cahier: 'monde', q: '', toast: '' };
+
+  componentDidMount() {
+    const p = new URLSearchParams(location.search);
+    let th = p.get('theme');
+    if (!th) { try { th = localStorage.getItem('theme'); } catch (e) {} }
+    if (th === 'dark' || th === 'light') document.documentElement.dataset.theme = th;
+    if (p.get('taille')) document.documentElement.dataset.taille = p.get('taille');
+    if (p.get('lus') !== null) window.VEILLEUR_DEMO = { lus: p.get('lus').split(',').filter(Boolean).map((s) => '2026-09-30/' + s) };
+    document.documentElement.classList.add('js');
+    document.body.dataset.racine = 'prototype/';
+    const init = { ecran: p.get('ecran') || 'une', slug: p.get('slug') || 'international', cahier: p.get('cahier') || 'monde', q: p.get('q') || '' };
+    this.classeCorps(init.ecran);
+    const attendre = () => {
+      if (!(window.VEILLEUR_DONNEES && window.Veilleur)) { this.t = setTimeout(attendre, 40); return; }
+      this.clic = (e) => this.onClic(e);
+      this.soumettre = (e) => this.onSubmit(e);
+      document.addEventListener('click', this.clic);
+      document.addEventListener('submit', this.soumettre, true);
+      this.setState({ ...init, pret: true }, () => this.apresPage(p.get('etat'), p.get('ancre')));
+    };
+    attendre();
+  }
+  componentWillUnmount() {
+    clearTimeout(this.t);
+    document.removeEventListener('click', this.clic);
+    document.removeEventListener('submit', this.soumettre, true);
+  }
+
+  classeCorps(ecran) {
+    const b = document.body.classList;
+    ['page-une', 'page-article', 'page-liste'].forEach((c) => b.remove(c));
+    b.add(ecran === 'une' ? 'page-une' : (ecran === 'article' || ecran === 'essentiel') ? 'page-article' : 'page-liste');
+  }
+
+  onClic(e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const h = a.getAttribute('href');
+    if (/^(https?:|mailto:)/.test(h) || h.startsWith('#')) return;
+    e.preventDefault();
+    document.querySelectorAll('dialog[open]').forEach((d) => d.close());
+    this.aller(h);
+  }
+  onSubmit(e) {
+    const f = e.target;
+    e.preventDefault();
+    if (f.matches('.recherche')) return;
+    const inp = f.querySelector('input[name=q]');
+    const d = f.closest('dialog'); if (d) d.close();
+    this.aller('recherche.html?q=' + encodeURIComponent(inp ? inp.value : ''));
+  }
+
+  aller(h) {
+    const D = window.VEILLEUR_DONNEES;
+    let [chemin, ancre] = h.split('#');
+    const [p, qs] = chemin.split('?');
+    const segs = p.replace(/^(\.\.\/)+/, '').replace(/^prototype\//, '').split('/').filter(Boolean);
+    const fichier = (segs.pop() || 'index.html').replace(/\.(html|xml)$/, '');
+    const dossier = segs.pop() || '';
+    const slugs = D.edition.map((x) => x.slug);
+    let cible = null;
+    if (fichier === 'index' && !dossier) cible = { ecran: 'une' };
+    else if (dossier === 'cahier') cible = { ecran: 'cahier', cahier: fichier };
+    else if (dossier === 'rubrique') {
+      if (fichier === 'essentiel') cible = { ecran: 'essentiel' };
+      else if (fichier === 'editorial') cible = { ecran: 'article', slug: 'editorial' };
+      else { const r = D.config.rubriques.find((x) => x.id === fichier); if (r) { cible = { ecran: 'cahier', cahier: r.cahier }; ancre = r.id; } }
+    }
+    else if (fichier === 'notions') cible = { ecran: 'notions' };
+    else if (fichier === 'recherche') cible = { ecran: 'recherche', q: new URLSearchParams(qs || '').get('q') || '' };
+    else if (dossier === '2026-09-30' && slugs.includes(fichier)) cible = fichier === 'essentiel' ? { ecran: 'essentiel' } : { ecran: 'article', slug: fichier };
+    if (!cible) { this.montrerToast(dossier === '2026-09-29' ? 'L’édition du 29 septembre n’est pas incluse dans le prototype.' : `La page « ${fichier} » n’est pas incluse dans le prototype.`); return; }
+    this.classeCorps(cible.ecran);
+    try { const u = new URL(location.href); u.search = ''; Object.entries(cible).forEach(([k, v]) => v && u.searchParams.set(k, v)); u.hash = ''; history.replaceState(null, '', u); } catch (e) {}
+    this.setState({ ecran: null }, () => this.setState({ q: '', ...cible }, () => this.apresPage(null, ancre)));
+  }
+
+  apresPage(etat, ancre) {
+    const q = document.getElementById('q'); if (q) q.value = this.state.q || '';
+    window.scrollTo(0, 0);
+    window.Veilleur.rafraichir();
+    if (ancre) window.Veilleur.ouvrirAncre(ancre);
+    if (etat) (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => this.etat(etat), 300));
+  }
+
+  etat(e) {
+    const V = window.Veilleur, $ = (s) => document.querySelector(s);
+    const y = (el, off) => { if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - off); };
+    if (e === 'defile') y($('.section-essentiel'), 58);
+    if (e === 'lecture') y($('.corps h2'), 420);
+    if (e === 'notion') { const t = $('.corps a.terme'); y(t, 330); if (t) V.ouvrirNotion(t.dataset.notion, t); }
+    if (e === 'source') { const a = $('.corps a.appel[data-source="3"]') || $('.corps a.appel'); y(a, 300); if (a) V.ouvrirSource(+a.dataset.source, a); }
+    if (e === 'fin') y($('.suite'), 60);
+    if (e === 'sommaire') V.ouvrirSommaire('edition');
+    if (e === 'cahiers') V.ouvrirSommaire('cahiers');
+    if (e === 'ouvert') { const d = document.querySelectorAll('.article-breves details.breve'); if (d[1]) d[1].open = true; y($('.breves-outils'), 48); }
+    if (e === 'lettres') y($('#lettre-G'), 172);
+    if (e === 'filtre') { const f = $('#filtre-notions'); if (f) { f.value = 'guerre'; f.dispatchEvent(new Event('input', { bubbles: true })); } }
+    if (e === 'rubrique') y($('#europe'), 118);
+    setTimeout(() => window.dispatchEvent(new Event('scroll')), 50);
+  }
+
+  montrerToast(t) {
+    this.setState({ toast: t });
+    clearTimeout(this.tt);
+    this.tt = setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+
+  renderVals() {
+    const D = window.VEILLEUR_DONNEES, s = this.state;
+    if (!s.pret || !D) return { pret: false };
+    const RC = { international: 'Géopolitique', europe: 'Europe', 'sud-global': 'Sud global', 'politique-france': 'Politique', societe: 'Société', economie: 'Économie', energie: 'Énergie', climat: 'Climat', 'sciences-sante': 'Sciences', 'tech-ia': 'Technologies', cybersecurite: 'Cybersécurité', culture: 'Idées', editorial: 'Éditorial', essentiel: 'L’essentiel' };
+    const ed = D.edition;
+    const bySlug = Object.fromEntries(ed.map((a) => [a.slug, a]));
+    const nmap = Object.fromEntries(D.notions.map((n) => [n.id, n]));
+    const href = (a) => `2026-09-30/${a.slug}.html`;
+    const split = (c) => { const m = (c || '').match(/^(.+?[.!?])\s+([A-ZÀ-ÖØ-Þ«].*)$/); return m ? [m[1], m[2]] : [c || '', '']; };
+    const numerotes = ed.filter((a) => a.num > 0);
+    const total = numerotes.length;
+    const carte = (a) => {
+      const [c1, c2] = split(a.chapo);
+      return { href: href(a), rhref: `rubrique/${a.rubrique}.html`, rn: a.rn, sujet: a.sujet, titre: a.titre, c1, c2, auteur: a.auteur,
+        meta: [a.lieu, a.min + ' min'].filter(Boolean).join(' · ') + (a.nbSources ? ' · ' : ''), nb: a.nbSources ? a.nbSources + ' sources' : '' };
+    };
+    const ecranArt = s.ecran === 'article' ? (bySlug[s.slug] || bySlug.international) : s.ecran === 'essentiel' ? bySlug.essentiel : null;
+    const courant = ecranArt ? ecranArt.slug : '';
+    const somItem = (a) => ({ href: href(a), num: a.num ? String(a.num).padStart(2, '0') : '—', rub: RC[a.slug === 'editorial' ? 'editorial' : a.rubrique] || a.rn, court: a.court,
+      duree: a.slug === 'essentiel' ? '12 brèves' : a.min + ' min', courant: a.slug === courant ? 'true' : 'false', rn: a.rn, titre: a.titre });
+
+    const une = bySlug.international;
+    const [u1, u2] = split(une.chapo);
+    const plain = (h) => h.replace(/<sup[\s\S]*?<\/sup>/g, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const ess = bySlug.essentiel;
+
+    const cahiersUne = D.config.cahiers.map((c) => {
+      const arts = ed.filter((a) => a.cahier === c.id && a.slug !== 'international');
+      return { id: c.id, nom: c.nom, href: `cahier/${c.id}.html`, compte: arts.length + (arts.length > 1 ? ' articles' : ' article'), articles: arts.map(carte) };
+    }).filter((c) => c.articles.length);
+
+    let art = null;
+    if (ecranArt) {
+      const a = ecranArt;
+      const i = ed.indexOf(a), prec = ed[i - 1], suiv = ed[i + 1];
+      const [c1, c2] = split(a.chapo);
+      const medias = [...new Set(a.sources.map((x) => x.media).filter(Boolean))];
+      const restants = ed.slice(i + 1).filter((x) => x.slug !== 'essentiel');
+      const minRest = restants.reduce((t, x) => t + x.min, 0);
+      const position = a.num ? `${a.num} / ${total}` : 'L’essentiel';
+      const suivO = suiv ? { href: href(suiv), etiquette: `À suivre · ${suiv.num ? suiv.num + ' / ' + total : 'L’essentiel'} · ${RC[suiv.slug === 'editorial' ? 'editorial' : suiv.rubrique]} →`, titre: suiv.titre, cta: suiv.slug === 'essentiel' ? 'Parcourir l’essentiel · 4 min' : `Lire l’article suivant · ${suiv.min} min`, label: 'Suivant' }
+        : { href: 'index.html#sommaire', etiquette: 'Fin de l’édition', titre: 'Vous avez parcouru toute l’édition du 30 septembre.', cta: 'Revenir au sommaire', label: 'Sommaire' };
+      art = {
+        cle: '2026-09-30/' + a.slug, min: a.min, rhref: `rubrique/${a.rubrique}.html`, rn: a.rn, rc: RC[a.slug === 'editorial' ? 'editorial' : a.rubrique] || a.rn, sujet: a.sujet, titre: a.titre, c1, c2, auteur: a.auteur,
+        metaLongue: [a.lieu, 'mercredi 30 septembre 2026', a.slug === 'essentiel' ? '' : a.min + ' min de lecture'].filter(Boolean).join(' · '),
+        nbSources: a.nbSources, aEnBref: a.enBref.length > 0, enBref: a.enBref.map(plain),
+        corpsEl: a.corps ? React.createElement('div', { className: 'corps', dangerouslySetInnerHTML: { __html: a.corps.replace(/href="\.\.\/notions/g, 'href="notions') } }) : null,
+        aPlusLoin: a.plusLoin.length > 0, plusLoin: a.plusLoin,
+        plResume: `${a.plusLoin.length} ressources · ` + a.plusLoin.map((r) => r.detail.split(' : ')[0]).slice(0, 3).join(', ') + '…',
+        srcResume: medias.slice(0, 3).join(', ') + (medias.length > 3 ? ` et ${medias.length - 3} autres médias` : ''),
+        sources: a.sources.map((x) => ({ ...x, id: 'source-' + x.n, detail: [x.media, x.date].filter(Boolean).join(', ') })),
+        aNotions: a.notions.length > 0,
+        notions: a.notions.map((id) => nmap[id]).filter(Boolean).map((n) => ({ ...n, ancre: 'nc-' + n.id, href: 'notions.html#' + n.id })),
+        breves: a.breves.map((b) => ({ n: b.n, id: 'breve-' + b.n, titre: b.titre, el: React.createElement('div', { className: 'breve-texte', dangerouslySetInnerHTML: { __html: b.html } }) })),
+        bilan: a.num ? (restants.length ? `Article ${a.num} sur ${total} · encore ${restants.length} article${restants.length > 1 ? 's' : ''}, ${minRest} min` : `Article ${a.num} sur ${total} · dernier de l’édition`) : `L’essentiel · encore ${restants.length} articles, ${minRest} min`,
+        prec: prec ? { href: href(prec), rn: RC[prec.slug === 'editorial' ? 'editorial' : prec.rubrique], titre: prec.titre } : null,
+        suiv: suivO, position,
+      };
+    }
+
+    const c = D.config.cahiers.find((x) => x.id === s.cahier) || D.config.cahiers[0];
+    const cah = { nom: c.nom, rubs: D.config.rubriques.filter((r) => r.cahier === c.id).map((r) => {
+      const arts = D.recherche.filter((x) => x.r === r.id).map((x) => {
+        if (x.u === '2026-09-30/' + r.id + '.html' && bySlug[r.id]) return carte(bySlug[r.id]);
+        const [c1, c2] = split(x.c);
+        return { href: x.u, rhref: `rubrique/${r.id}.html`, rn: x.rn, sujet: x.s, titre: x.t, c1, c2, auteur: (D.config.rubriques.find((y) => y.id === r.id) || {}).nom ? `Agent ${RC[r.id]}` : '', meta: x.dl, nb: '' };
+      });
+      return { id: r.id, nom: r.nom, ancre: '#' + r.id, href: `rubrique/${r.id}.html`, intro: r.consigne, compte: arts.length + (arts.length > 1 ? ' articles' : ' article'), articles: arts };
+    }) };
+    cah.rubs.forEach((r) => r.articles.forEach((x) => { if (x.auteur && x.auteur.startsWith('Agent ')) { const e = ed.find((y) => y.rubrique === r.id); if (e) x.auteur = e.auteur; } }));
+
+    const g = {};
+    D.notions.forEach((n) => { const L = n.terme.normalize('NFD')[0].toUpperCase(); (g[L] = g[L] || []).push({ ...n, liens: n.articles.map((ar) => ({ titre: ar.titre, href: `${ar.date}/${ar.slug}.html` })) }); });
+    const groupes = Object.keys(g).sort().map((L) => ({ L, id: 'lettre-' + L, ancre: '#lettre-' + L, items: g[L] }));
+
+    const bb = art ? { position: art.position, reste: `≈ ${art.min} min restante${art.min > 1 ? 's' : ''}`, href: art.suiv.href, label: art.suiv.label, aria: art.suiv.label === 'Suivant' ? `Article suivant : ${art.suiv.titre}` : 'Revenir au sommaire' } : {};
+
+    return {
+      pret: true,
+      estUne: s.ecran === 'une', estArticle: s.ecran === 'article', estEssentiel: s.ecran === 'essentiel', estCahier: s.ecran === 'cahier',
+      estNotions: s.ecran === 'notions', estRecherche: s.ecran === 'recherche', estComposants: s.ecran === 'composants',
+      barreArticle: !!art, barreListe: !art && !!s.ecran,
+      bbCahiers: s.ecran === 'cahier' ? 'page' : 'false', bbRecherche: s.ecran === 'recherche' ? 'page' : 'false',
+      bandeauInfo: art ? `N° 2 · ${RC[art.cle.split('/')[1] === 'editorial' ? 'editorial' : ecranArt.rubrique] || ''}` : s.ecran === 'cahier' ? `Cahier ${c.nom}` : 'N° 2 · 30 sept. 2026',
+      cahiers: D.config.cahiers.map((x) => ({ nom: x.nom, href: `cahier/${x.id}.html` })),
+      une: { rn: une.rn, sujet: une.sujet, href: href(une), titre: une.titre, c1: u1, c2: u2, auteur: une.auteur, meta: 'Paris · 3 min · ', nb: '15 sources', enBref: une.enBref.map(plain) },
+      edito: { titre: bySlug.editorial.titre, chapo: bySlug.editorial.chapo },
+      sommaireUne: numerotes.map(somItem),
+      sommaireFeuille: ed.map(somItem),
+      sommaireTout: ed.map(somItem),
+      brevesUne: ess.breves.map((b) => ({ titre: b.titre, texte: plain(b.html), href: `2026-09-30/essentiel.html#breve-${b.n}` })),
+      cahiersUne,
+      notionsJour: ed.filter((a) => a.notions.length).map((a) => nmap[a.notions[0]]).filter(Boolean).map((n) => ({ terme: n.terme, href: 'notions.html#' + n.id })),
+      art: art || { suiv: {}, prec: {} }, bb,
+      cah, groupes,
+      rubriques: D.config.rubriques.map((r) => ({ id: r.id, nom: r.nom })),
+      filtres: [...D.config.cahiers.map((x) => ({ nom: x.nom, rubs: D.config.rubriques.filter((r) => r.cahier === x.id).map((r) => r.id).join(' ') })), { nom: 'L’essentiel', rubs: 'essentiel' }, { nom: 'Éditoriaux', rubs: 'editorial' }],
+      suggestions: ['Ormuz', 'Ebola', 'Budget 2027', 'IA', 'Goncourt'],
+      cahiersFeuille: D.config.cahiers.map((x) => ({ nom: x.nom, href: `cahier/${x.id}.html`, rubs: D.config.rubriques.filter((r) => r.cahier === x.id).map((r) => ({ nom: r.nom, href: `rubrique/${r.id}.html` })) })),
+      toast: s.toast,
+    };
+  }
+}
+</script>
+</body>
+</html>

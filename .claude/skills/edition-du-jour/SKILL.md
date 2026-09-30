@@ -1,30 +1,22 @@
 ---
 name: edition-du-jour
-description: Produit l'édition quotidienne du journal — un agent-rédacteur par rubrique enquête et écrit son article, puis le rédacteur en chef écrit l'éditorial, le site est reconstruit et l'édition poussée. À utiliser quand on demande « l'édition du jour », « les articles du jour » ou depuis une routine planifiée.
+description: Produit l'édition quotidienne du journal (collecte des flux, rédaction des rubriques du jour, éditorial, construction du site) avec bin/edition.sh, puis la publie. À utiliser quand on demande « l'édition du jour », « les articles du jour » ou depuis une routine planifiée.
 ---
 
 # Édition du jour
 
-Ce skill fait tourner toute la rédaction dans une seule session Claude Code
-(par exemple depuis une routine planifiée sur claude.ai/code). La GitHub Action
-`.github/workflows/edition-quotidienne.yml` fait la même chose côté CI.
+Toute la chaîne est dans `bin/edition.sh`. Ce skill la lance et en rend compte.
+Ne rédige pas les articles toi-même et ne lance pas de sous-agents : le script
+s'en charge, avec les budgets de `config/journal.json`.
 
-1. Détermine la date du jour à Paris : `TZ=Europe/Paris date +%F` → `DATE`.
-   Si `content/DATE/` contient déjà des articles, ne refais que les rubriques manquantes.
-2. Lis `redaction/CONSIGNES.md` et `site.config.json`.
-3. Lance **en parallèle un sous-agent par rubrique** de `site.config.json`
-   (outil Agent, en arrière-plan). Chaque sous-agent reçoit : son nom d'agent,
-   sa rubrique et sa consigne, la date, le chemin de `CONSIGNES.md`, l'obligation
-   de rechercher avec WebSearch/WebFetch, de ne rien inventer, d'éviter les
-   sujets déjà traités (en-têtes de `content/*/<id>.md`) et d'écrire uniquement
-   `content/DATE/<id>.md`, sans opération git.
-4. Quand tous ont rendu leur copie : `node scripts/verifier-liens.mjs --corriger content/DATE/*.md`
-   (si le réseau le permet), puis `node scripts/verifier.mjs content/DATE/*.md`.
-   Renvoie à son agent tout article refusé, avec les erreurs à corriger.
-5. Écris toi-même l'éditorial `content/DATE/editorial.md` en suivant la section
-   « Éditorial » de `CONSIGNES.md` (avec la clé `une:`).
-6. `node scripts/build.mjs` doit réussir.
-7. Commit `Édition du DATE` et push sur `main` : Vercel redéploie le site à
-   chaque push sur cette branche. Si la session ne peut pousser que sur une
-   autre branche, indique-le dans le résumé.
-8. Résume : titres de l'édition, article à la une, éventuels échecs.
+1. `npm test` doit passer. Sinon, arrête-toi et signale l'échec.
+2. `bin/edition.sh` : sans argument, il prend la date du jour à Paris et les
+   rubriques prévues par le plan. Il ne refait pas une rubrique déjà présente.
+   Pour une seule rubrique : `bin/edition.sh "" economie`.
+3. En cas d'échec d'une rubrique, lis la cause sur la sortie d'erreur et le
+   brouillon `content/DATE/RUBRIQUE.rejete`. Ne le corrige pas à la main : signale-le.
+4. Commit `Édition du DATE`, avec `content/` et `journal/`. Pousse sur `main` :
+   Vercel redéploie le site. Si la session ne peut pousser que sur une autre
+   branche, dis-le dans le résumé.
+5. Résume l'édition : les titres, l'article à la une, les éventuels rejets et
+   le bilan de consommation affiché par `node bin/journal.mjs DATE`.

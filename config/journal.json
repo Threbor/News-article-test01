@@ -1,0 +1,136 @@
+{
+  "nom": "Le Veilleur",
+  "devise": "Quotidien d'analyse — l'actualité du monde expliquée, sourcée, reliée",
+  "fondation": "2026-09-29",
+  "lieu": "Paris",
+  "fuseau": "Europe/Paris",
+
+  "cahiers": [
+    { "id": "monde", "nom": "Monde" },
+    { "id": "france", "nom": "France" },
+    { "id": "economie", "nom": "Économie" },
+    { "id": "planete", "nom": "Planète & sciences" },
+    { "id": "numerique", "nom": "Numérique" },
+    { "id": "idees", "nom": "Idées" }
+  ],
+
+  "rubriques": [
+    {
+      "id": "editorial", "nom": "Éditorial", "court": "Éditorial", "agent": "Le rédacteur en chef",
+      "format": "editorial", "frequence": "quotidien",
+      "consigne": "Le fil rouge de l'édition et le choix de la une."
+    },
+    {
+      "id": "essentiel", "nom": "L'essentiel du jour", "court": "L'essentiel", "agent": "Agent Veille",
+      "format": "breves", "frequence": "quotidien",
+      "consigne": "Tour du monde en 10 à 12 brèves sourcées : tous continents et tous domaines (politique, économie, sciences, culture, sport s'il fait événement), en privilégiant ce qu'il faut savoir pour comprendre le monde aujourd'hui."
+    },
+    {
+      "id": "international", "cahier": "monde", "nom": "Géopolitique & conflits", "court": "Géopolitique", "agent": "Agent International",
+      "frequence": "quotidien",
+      "motsCles": ["guerre", "conflit", "diplomatie", "otan", "onu", "sanctions", "cessez-le-feu", "armée", "frappe", "missile", "nucléaire", "iran", "israël", "gaza", "ukraine", "russie", "chine", "taïwan", "war", "ceasefire", "troops", "military"],
+      "consigne": "Guerres, diplomatie, alliances, puissances (États-Unis, Chine, Russie), organisations internationales. Replacer l'événement dans l'histoire longue de la région."
+    },
+    {
+      "id": "europe", "cahier": "monde", "nom": "Europe", "court": "Europe", "agent": "Agent Europe",
+      "frequence": ["lun", "jeu"],
+      "motsCles": ["union européenne", "commission européenne", "parlement européen", "bruxelles", "conseil européen", "eurozone", "schengen", "allemagne", "espagne", "italie", "pologne", "hongrie", "european union", "eu "],
+      "consigne": "Union européenne et pays européens : décisions de Bruxelles, élections nationales, élargissement, défense européenne, État de droit. Expliquer qui décide quoi dans les institutions."
+    },
+    {
+      "id": "sud-global", "cahier": "monde", "nom": "Sud global", "court": "Sud global", "agent": "Agent Sud",
+      "frequence": ["mar", "ven"],
+      "motsCles": ["afrique", "sahel", "nigeria", "sénégal", "mali", "burkina", "rdc", "congo", "éthiopie", "inde", "brésil", "indonésie", "mexique", "argentine", "brics", "amérique latine", "africa", "india", "brazil"],
+      "consigne": "Afrique, Asie, Amérique latine, Moyen-Orient hors grands conflits déjà couverts : politique intérieure, développement, puissances émergentes (Inde, Brésil, Indonésie, Nigeria…), BRICS. Donner la parole aux sources locales."
+    },
+    {
+      "id": "politique-france", "cahier": "france", "nom": "Politique française", "court": "Politique", "agent": "Agent Politique",
+      "frequence": "quotidien",
+      "motsCles": ["gouvernement", "assemblée nationale", "sénat", "premier ministre", "élysée", "macron", "motion de censure", "49.3", "budget", "projet de loi", "député", "sénateur", "parti socialiste", "rassemblement national", "lfi", "les républicains"],
+      "consigne": "Gouvernement, Parlement, partis, élections, réformes, budget. Expliquer les mécanismes institutionnels (49.3, motion de censure, navette parlementaire…)."
+    },
+    {
+      "id": "societe", "cahier": "france", "nom": "Société & droits", "court": "Société", "agent": "Agent Société",
+      "frequence": ["mer", "sam"],
+      "motsCles": ["grève", "syndicat", "éducation", "école", "hôpital", "justice", "tribunal", "migrants", "immigration", "logement", "pauvreté", "inégalités", "retraite", "police", "insee"],
+      "consigne": "Travail, éducation, santé publique, justice, migrations, inégalités, libertés publiques, en France et ailleurs. S'appuyer sur des données (INSEE, Eurostat, OCDE, ONU)."
+    },
+    {
+      "id": "economie", "cahier": "economie", "nom": "Économie mondiale", "court": "Économie", "agent": "Agent Économie",
+      "frequence": "quotidien",
+      "motsCles": ["inflation", "taux", "banque centrale", "bce", "fed", "croissance", "pib", "dette", "marchés", "bourse", "droits de douane", "commerce", "chômage", "emploi", "fmi", "tariff", "economy", "markets"],
+      "consigne": "Marchés, banques centrales, inflation, dette, commerce international, emploi, grandes entreprises. Expliquer les mécanismes économiques en jeu."
+    },
+    {
+      "id": "energie", "cahier": "economie", "nom": "Énergie & ressources", "court": "Énergie", "agent": "Agent Énergie",
+      "frequence": ["mer", "dim"],
+      "motsCles": ["pétrole", "brent", "gaz", "opep", "électricité", "nucléaire civil", "edf", "renouvelables", "éolien", "solaire", "lithium", "métaux", "uranium", "blé", "alimentation", "oil", "opec", "lng"],
+      "consigne": "Pétrole, gaz, électricité, nucléaire, renouvelables, métaux critiques, eau, agriculture et alimentation : prix, routes d'approvisionnement, dépendances stratégiques."
+    },
+    {
+      "id": "climat", "cahier": "planete", "nom": "Climat & biodiversité", "court": "Climat", "agent": "Agent Écologie",
+      "frequence": ["lun", "ven"],
+      "motsCles": ["climat", "réchauffement", "cop", "giec", "biodiversité", "inondation", "sécheresse", "canicule", "incendie", "ouragan", "émissions", "carbone", "pollution", "climate", "flood", "wildfire"],
+      "consigne": "Climat, biodiversité, pollutions, catastrophes, négociations internationales (COP), politiques publiques de transition. S'appuyer sur la science (GIEC, OMM, Copernicus)."
+    },
+    {
+      "id": "sciences-sante", "cahier": "planete", "nom": "Sciences & santé", "court": "Sciences", "agent": "Agent Sciences",
+      "frequence": ["jeu", "dim"],
+      "motsCles": ["étude", "chercheurs", "découverte", "espace", "nasa", "esa", "vaccin", "épidémie", "oms", "maladie", "cancer", "génome", "physique", "astronomie", "scientists", "study", "outbreak"],
+      "consigne": "Découvertes scientifiques, espace, médecine, épidémies, recherche. Expliquer la méthode et le degré de certitude des résultats, citer les publications scientifiques."
+    },
+    {
+      "id": "tech-ia", "cahier": "numerique", "nom": "Technologies & IA", "court": "Technologies", "agent": "Agent Tech",
+      "frequence": ["mar", "sam"],
+      "motsCles": ["intelligence artificielle", "ia ", "openai", "anthropic", "google", "meta", "apple", "microsoft", "nvidia", "puces", "semi-conducteurs", "plateforme", "numérique", "ai act", "artificial intelligence", "chips"],
+      "consigne": "Intelligence artificielle, plateformes, semi-conducteurs, télécoms : innovations et surtout leurs enjeux politiques, économiques et sociaux (concentration, régulation, souveraineté)."
+    },
+    {
+      "id": "cybersecurite", "cahier": "numerique", "nom": "Cybersécurité", "court": "Cybersécurité", "agent": "Agent Cyber",
+      "frequence": "quotidien",
+      "motsCles": ["cyberattaque", "rançongiciel", "ransomware", "piratage", "fuite de données", "vulnérabilité", "faille", "cve", "zero-day", "anssi", "hackers", "malware", "phishing", "breach"],
+      "consigne": "Attaques et rançongiciels, vulnérabilités critiques, cyberconflits entre États, désinformation, régulation (NIS2, Cyber Resilience Act). S'appuyer sur l'ANSSI, le CERT-FR, l'ENISA."
+    },
+    {
+      "id": "culture", "cahier": "idees", "nom": "Idées & culture", "court": "Idées", "agent": "Agent Culture",
+      "frequence": ["mer", "sam"],
+      "motsCles": ["livre", "roman", "prix littéraire", "goncourt", "exposition", "musée", "cinéma", "festival", "film", "théâtre", "essai", "philosophe", "patrimoine", "médias"],
+      "consigne": "Livres, essais, débats d'idées, patrimoine, cinéma, arts, médias. Relier l'événement culturel aux questions de société qu'il éclaire."
+    }
+  ],
+
+  "formats": {
+    "article": {
+      "consigne": "redaction/consignes/article.md",
+      "modele": "claude-sonnet-5-5",
+      "tours": 16,
+      "recherches": 5,
+      "lectures": 4,
+      "outils": "WebSearch,WebFetch",
+      "regles": { "mots": [380, 800], "liensCorps": 6, "sitesCorps": 4, "enBref": 3, "notions": [2, 4], "plusLoin": 3, "sources": 5 }
+    },
+    "breves": {
+      "consigne": "redaction/consignes/breves.md",
+      "modele": "claude-haiku-4-5-20251001",
+      "tours": 10,
+      "recherches": 3,
+      "lectures": 2,
+      "outils": "WebSearch,WebFetch",
+      "regles": { "breves": 8, "sources": 1 }
+    },
+    "editorial": {
+      "consigne": "redaction/consignes/editorial.md",
+      "modele": "claude-sonnet-5-5",
+      "tours": 2,
+      "recherches": 0,
+      "lectures": 0,
+      "outils": "",
+      "regles": { "mots": [250, 600], "une": true }
+    }
+  },
+
+  "collecte": {
+    "fenetreHeures": 48,
+    "parRubrique": 25
+  }
+}

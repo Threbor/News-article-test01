@@ -1,5 +1,6 @@
 ---
 titre: Citrix NetScaler, la porte d'entrée que les attaquants avaient déjà franchie
+titre_court: La faille Citrix NetScaler
 surtitre: Vulnérabilités critiques
 chapo: Citrix a confirmé le 27 septembre deux failles critiques de ses passerelles NetScaler, exploitées depuis des semaines avant toute correction. Pour des milliers d'organisations, installer le correctif ne suffit plus : il faut désormais vérifier que les intrus ne sont pas déjà dans la place.
 rubrique: cybersecurite

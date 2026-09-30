@@ -41,6 +41,7 @@ Fichier `content/AAAA-MM-JJ/<rubrique>.md`. Corps de **450 à 650 mots**.
 ```markdown
 ---
 titre: Un titre d'analyse, évocateur, 6 à 14 mots
+titre_court: Le même en 2 à 6 mots, pour les sommaires
 surtitre: Le sujet précis en 2 à 5 mots
 chapo: Deux phrases qui posent le fait et l'enjeu.
 rubrique: economie
@@ -89,6 +90,10 @@ Exigences :
 - `## Sources` : toutes les sources citées dans le corps, au moins 5.
 - Markdown autorisé : paragraphes, `##`, `>` citations (`> texte — Auteur`),
   `**gras**`, `*italique*`, `[liens](url)`, listes `-`.
+- Les notions clés sont reliées automatiquement à leur première mention dans le
+  texte. Si le texte emploie une autre forme que le terme de la notion, balise-la :
+  `[[forme employée|id-notion]]`, où l'id est le terme en minuscules, sans accents,
+  mots séparés par des tirets (« Détroit d'Ormuz » → `detroit-d-ormuz`).
 
 ## Format de « L'essentiel du jour » (rubrique `essentiel`)
 
