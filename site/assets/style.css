@@ -72,6 +72,7 @@ body {
   font-kerning: normal;
   font-variant-ligatures: common-ligatures;
   overflow-x: hidden;
+  overflow-x: clip;   /* « clip » ne crée pas de conteneur de défilement : les éléments fixes restent fixes */
 }
 
 a { color: inherit; text-decoration: none; }
@@ -377,7 +378,8 @@ a.ressource:hover { border-color: var(--accent); transform: translateY(-1px); co
 }
 .pied p { margin: 0 0 6px; }
 .pied-nom { font-family: var(--titre); font-weight: 900; font-size: 22px; color: var(--encre); }
-.pied a { text-decoration: underline; text-underline-offset: 2px; }
+.pied a, .pied .lien-bouton { text-decoration: underline; text-underline-offset: 2px; }
+.pied .lien-bouton { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
 
 /* ---------- Adaptation ---------- */
 

@@ -152,6 +152,9 @@ dialog.feuille[open] { animation: feuille-monte var(--duree) cubic-bezier(.2, .8
 .liens-outils { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .liens-outils a { display: flex; align-items: center; min-height: 48px; padding: 0 14px; background: var(--papier-2); border-radius: var(--r2); font: 600 14.5px var(--sans); }
 .liens-outils a::after { content: "→"; margin-left: auto; color: var(--gris); }
+.liens-outils button { width: 100%; min-height: 48px; padding: 0 14px; border: 0; border-radius: var(--r2); background: var(--accent); color: var(--papier); font: 700 14.5px var(--sans); cursor: pointer; text-align: left; }
+.liens-outils li[hidden], [data-installer][hidden], [data-aide-ios][hidden] { display: none; }
+.aide-installation { margin: 10px 0 0; font: 14px/1.45 var(--sans); color: var(--encre-douce); }
 
 .reglages { display: grid; gap: 10px; margin-top: 12px; }
 .reglage { display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 600 14.5px var(--sans); }
@@ -209,7 +212,10 @@ dialog.feuille[open] { animation: feuille-monte var(--duree) cubic-bezier(.2, .8
   .barre-bas {
     display: flex; align-items: stretch; gap: 4px; position: fixed; inset: auto 0 0 0; z-index: 25;
     height: calc(var(--haut-barre) + var(--bas-sur)); padding: 0 8px var(--bas-sur);
-    background: color-mix(in srgb, var(--papier) 96%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    background: var(--papier);
+    /* Couche de composition propre et fond opaque : la barre reste collée au bas de l'écran
+       pendant le défilement, sans flou à recalculer à chaque image. */
+    transform: translate3d(0, 0, 0); backface-visibility: hidden; will-change: transform; contain: layout paint;
     border-top: 1px solid var(--filet-fort); font-family: var(--sans);
   }
   .bb-bouton {

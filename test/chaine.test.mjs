@@ -69,6 +69,16 @@ test("chaîne : rubrique, éditorial, journal de consommation, site", () => {
   assert.doesNotMatch(art, /Aller au contenu/);
   assert.match(art, /<\/h1>\s*<figure class="carte">/, "la carte suit immédiatement le titre");
   assert.ok(fs.existsSync(path.join(d, "_site/assets/monde.svg")));
+
+  // Application installable : manifeste valide, icônes présentes, réserve du service worker complète.
+  const manifeste = JSON.parse(fs.readFileSync(path.join(d, "_site/manifest.webmanifest"), "utf8"));
+  assert.equal(manifeste.display, "standalone");
+  for (const i of manifeste.icons) assert.ok(fs.existsSync(path.join(d, "_site", i.src)), i.src);
+  const sw = fs.readFileSync(path.join(d, "_site/sw.js"), "utf8");
+  const reserve = JSON.parse(sw.match(/const A_GARDER = (\[.*\]);/)[1]);
+  assert.ok(reserve.includes(`${DATE}/international.html`), "l'édition du jour est gardée pour la lecture hors connexion");
+  for (const u of reserve) assert.ok(fs.existsSync(path.join(d, "_site", u.split("?")[0])), `réserve : ${u} introuvable`);
+  assert.match(une, /<link rel="manifest" href="manifest\.webmanifest">/);
 });
 
 test("chaîne : une réponse sans en-tête est rejetée bruyamment", () => {

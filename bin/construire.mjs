@@ -26,7 +26,7 @@ principal((o) => {
 
   const editions = chargerEditions(contenu, config);
   const assets = chemin("site", "assets");
-  const empreintes = Object.fromEntries(fs.readdirSync(assets).map((f) => [f,
+  const empreintes = Object.fromEntries(fs.readdirSync(assets).filter((f) => fs.statSync(path.join(assets, f)).isFile()).map((f) => [f,
     crypto.createHash("sha256").update(fs.readFileSync(path.join(assets, f))).digest("hex").slice(0, 10)]));
   const fichiers = construireSite(editions, config, { base, empreintes });
 

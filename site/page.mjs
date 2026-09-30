@@ -50,7 +50,8 @@ function feuilleSommaire(p) {
   <div class="panneau" id="panneau-cahiers" role="tabpanel" aria-labelledby="onglet-cahiers" hidden>
     <ul class="liste-cahiers">${c.cahiers.map((x) => `<li><a class="cahier-lien" href="${r}cahier/${x.id}.html">${echapper(x.nom)}</a><div class="cahier-rubs">${c.rubriques.filter((y) => y.cahier === x.id).map((y) => `<a class="puce" href="${r}rubrique/${y.id}.html">${echapper(y.nom)}</a>`).join("")}</div></li>`).join("")}</ul>
     <p class="panneau-titre">Outils</p>
-    <ul class="liens-outils"><li><a href="${r}notions.html">Glossaire</a></li><li><a href="${r}recherche.html">Recherche</a></li><li><a href="${r}archives.html">Archives</a></li><li><a href="${r}flux.xml">Flux RSS</a></li></ul>
+    <ul class="liens-outils"><li><a href="${r}notions.html">Glossaire</a></li><li><a href="${r}recherche.html">Recherche</a></li><li><a href="${r}archives.html">Archives</a></li><li><a href="${r}flux.xml">Flux RSS</a></li><li data-installer hidden><button type="button" class="installer">Installer l’app</button></li></ul>
+    <p class="aide-installation" data-aide-ios hidden>Pour installer le journal sur l’iPhone : touchez <strong>Partager</strong>, puis <strong>Sur l’écran d’accueil</strong>.</p>
     <p class="panneau-titre">Lecture</p>
     <div class="reglages">
       <div class="reglage">Thème <div class="segmente" role="group" aria-label="Thème"><button type="button" data-theme-choix="light" aria-pressed="false">Clair</button><button type="button" data-theme-choix="dark" aria-pressed="false">Sombre</button><button type="button" data-theme-choix="auto" aria-pressed="true">Auto</button></div></div>
@@ -75,7 +76,15 @@ export function page(p) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${echapper(p.titre)}</title>
 <meta name="description" content="${echapper(p.description)}">
-<meta name="theme-color" content="#fbf9f4">
+<meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151517" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="${r}manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="${r}assets/icones/favicon-32.png">
+<link rel="apple-touch-icon" href="${r}assets/icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="${echapper(c.nom)}">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 ${TETE_SCRIPT}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,7 +116,7 @@ ${p.contenu}
   <p class="pied-nom">${echapper(c.nom)}</p>
   <p>${echapper(c.devise)}.</p>
   <p>Articles rédigés chaque matin par des agents d’intelligence artificielle à partir des sources liées dans le texte. Chaque fait est cliquable : vérifiez, comparez, approfondissez.</p>
-  <p><a href="${r}archives.html">Archives</a> · <a href="${r}notions.html">Glossaire des notions</a> · <a href="${r}recherche.html">Recherche</a> · <a href="${r}flux.xml">Flux RSS</a></p>
+  <p><a href="${r}archives.html">Archives</a> · <a href="${r}notions.html">Glossaire des notions</a> · <a href="${r}recherche.html">Recherche</a> · <a href="${r}flux.xml">Flux RSS</a><span data-installer hidden> · <button type="button" class="lien-bouton installer">Installer l’application</button></span></p>
 </footer>
 ${barreBas(p)}
 ${feuilleSommaire(p)}

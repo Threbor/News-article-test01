@@ -63,6 +63,7 @@ bin/                   LES PROGRAMMES (chacun répond à --aide)
   journal.mjs            bilan de consommation
   exporter-design.sh     archive pour Claude Design
   preparer-carto.mjs     world-atlas + codes ISO → donnees/pays.json (à relancer rarement)
+  generer-icones.mjs     icônes de l'application (à relancer rarement)
 
 lib/                   LE MÉCANISME, en fonctions pures (texte, markdown, article,
                        edition, regles, flux, config, cli)
@@ -156,6 +157,21 @@ dans `design/claude-design/livraison/`. Elle comprend :
 - une taille de texte réglable.
 
 La version ordinateur est inchangée.
+
+## Application installable
+
+Le site s'installe comme une application depuis le navigateur du smartphone :
+- **Android (Chrome)** : menu ⋮, puis *Installer l'application*. On peut aussi
+  toucher *Installer l'app* dans la feuille Sommaire, onglet *Cahiers & outils*.
+- **iPhone (Safari)** : *Partager*, puis *Sur l'écran d'accueil*.
+
+Une fois installé, le journal s'ouvre en plein écran, sans barre de navigateur,
+avec son icône. **L'édition du jour reste lisible hors connexion** : le service
+worker (`sw.js`, généré par `site/pwa.mjs`) garde en réserve la une, les
+articles du jour, le glossaire et les ressources. Les pages passent d'abord par
+le réseau pour rester à jour ; les ressources à empreinte sont servies depuis la
+réserve. Une page jamais lue affiche une page « Hors connexion ». Les icônes
+(`site/assets/icones/`) se régénèrent avec `bin/generer-icones.mjs`.
 
 ## Mise en route
 

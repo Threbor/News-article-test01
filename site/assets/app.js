@@ -335,9 +335,30 @@
     // Fin d'article vue : article lu
     const suite = $(".suite"), art = $(".article");
     if (suite && art) observer([suite], ([en]) => { if (en.isIntersecting) marquerLu(art.dataset.cle || cle(location.href)); });
-    majLus(); majReglages(); majProgression(); initRecherche();
+    majLus(); majReglages(); majProgression(); initRecherche(); majInstallation();
     if (location.hash.length > 1) { const id = decodeURIComponent(location.hash.slice(1)); if (document.getElementById(id)) ouvrirAncre(id); }
   };
+
+  // ---------- Application installable ----------
+
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    addEventListener("load", () => navigator.serviceWorker.register(`${racine()}sw.js`).catch(() => { /* hors ligne ou refusé */ }));
+  }
+  let invitation = null;
+  const autonome = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const majInstallation = () => {
+    $$("[data-installer]").forEach((el) => { el.hidden = !invitation; });
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !autonome;
+    $$("[data-aide-ios]").forEach((el) => { el.hidden = !ios; });
+  };
+  // Le navigateur propose aussi sa propre bannière ; on garde l'invitation pour nos boutons.
+  addEventListener("beforeinstallprompt", (e) => { invitation = e; majInstallation(); });
+  addEventListener("appinstalled", () => { invitation = null; majInstallation(); });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".installer") || !invitation) return;
+    invitation.prompt();
+    invitation.userChoice.finally(() => { invitation = null; majInstallation(); });
+  });
 
   // Exposé pour le débogage dans la console du navigateur.
   window.Veilleur = { rafraichir, ouvrirNotion, ouvrirSource, ouvrirSommaire, marquerLu, ouvrirAncre };
