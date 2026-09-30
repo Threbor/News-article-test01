@@ -67,7 +67,7 @@ test("chaîne : rubrique, éditorial, journal de consommation, site", () => {
   assert.match(art, /assets\/app\.js\?v=[0-9a-f]{10}"/, "les ressources portent l'empreinte de leur contenu");
   assert.match(art, /class="bb-bouton" href="index\.html" data-ouvrir="edition"/, "sans script, Sommaire mène au sommaire de l'édition");
   assert.doesNotMatch(art, /Aller au contenu/);
-  assert.match(art, /<figure class="carte">[\s\S]*<section class="en-bref"/, "la carte précède « En bref »");
+  assert.match(art, /<\/h1>\s*<figure class="carte">/, "la carte suit immédiatement le titre");
   assert.ok(fs.existsSync(path.join(d, "_site/assets/monde.svg")));
 });
 

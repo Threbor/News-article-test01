@@ -81,11 +81,33 @@
       if (e.target.closest(".feuille-fermer")) d.close();
     });
     d.addEventListener("close", () => $$(".est-actif", document).forEach((el) => el.matches("a.appel, a.terme") && el.classList.remove("est-actif")));
-    // Balayer vers le bas depuis la poignée ou l'en-tête pour fermer
-    let y0 = null;
-    d.addEventListener("touchstart", (e) => { if (e.target.closest(".feuille-poignee, .feuille-entete") && d.scrollTop <= 0) y0 = e.touches[0].clientY; }, { passive: true });
-    d.addEventListener("touchmove", (e) => { if (y0 === null) return; const dy = Math.max(0, e.touches[0].clientY - y0); d.style.transform = `translateY(${dy}px)`; }, { passive: true });
-    d.addEventListener("touchend", (e) => { if (y0 === null) return; const dy = e.changedTouches[0].clientY - y0; d.style.transform = ""; y0 = null; if (dy > 90) d.close(); });
+    // Balayer vers le bas pour fermer : depuis la poignée ou l'en-tête, ou depuis le contenu
+    // quand celui-ci est déjà remonté tout en haut. Un geste vers le haut fait défiler normalement.
+    let y0 = null, glisse = false;
+    const relacher = (fermer) => {
+      d.style.transition = calme.matches ? "" : "transform .18s ease-out";
+      d.style.transform = fermer ? "translateY(100%)" : "";
+      setTimeout(() => { if (fermer) d.close(); d.style.transform = ""; d.style.transition = ""; }, calme.matches ? 0 : 180);
+    };
+    d.addEventListener("touchstart", (e) => {
+      const poignee = e.target.closest(".feuille-poignee, .feuille-tete, .feuille-entete");
+      y0 = poignee || d.scrollTop <= 0 ? e.touches[0].clientY : null;
+      glisse = false;
+    }, { passive: true });
+    d.addEventListener("touchmove", (e) => {
+      if (y0 === null) return;
+      const dy = e.touches[0].clientY - y0;
+      if (!glisse && (dy < 0 || d.scrollTop > 0)) { y0 = null; return; }
+      if (dy > 8) glisse = true;
+      if (glisse) d.style.transform = `translateY(${Math.max(0, dy)}px)`;
+    }, { passive: true });
+    d.addEventListener("touchend", (e) => {
+      if (y0 === null) return;
+      const dy = e.changedTouches[0].clientY - y0;
+      y0 = null;
+      if (glisse) relacher(dy > 90);
+      glisse = false;
+    });
   };
   const ouvrir = (d) => { document.querySelectorAll("dialog.feuille[open]").forEach((x) => x !== d && x.close()); if (!d.open) d.showModal(); d.scrollTop = 0; };
   const entete = (etiquette) => `<span class="feuille-poignee" aria-hidden="true"></span>

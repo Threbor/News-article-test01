@@ -32,16 +32,18 @@ function feuilleSommaire(p) {
   const r = p.racine, e = p.edition, c = p.config;
   if (!e) return "";
   return `<dialog class="feuille feuille-sommaire" id="feuille-sommaire" aria-label="Sommaire et navigation">
+  <div class="feuille-tete">
   <span class="feuille-poignee" aria-hidden="true"></span>
   <div class="feuille-entete"><p class="feuille-etiquette">N<sup>o</sup> ${e.numero} <span>· ${echapper(majuscule(dateLongue(e.date)))}</span></p><button type="button" class="feuille-fermer">Fermer <span aria-hidden="true">✕</span></button></div>
-  <form class="feuille-recherche" action="${r}recherche.html" role="search">
-    ${ICONES.recherche}
-    <input class="champ" name="q" type="search" placeholder="Rechercher un article, une notion…" aria-label="Rechercher">
-  </form>
   <div class="onglets" role="tablist" aria-label="Navigation">
     <button type="button" class="onglet" role="tab" id="onglet-edition" data-onglet="edition" aria-controls="panneau-edition" aria-selected="true">Cette édition</button>
     <button type="button" class="onglet" role="tab" id="onglet-cahiers" data-onglet="cahiers" aria-controls="panneau-cahiers" aria-selected="false">Cahiers &amp; outils</button>
   </div>
+  </div>
+  <form class="feuille-recherche" action="${r}recherche.html" role="search">
+    ${ICONES.recherche}
+    <input class="champ" name="q" type="search" placeholder="Rechercher un article, une notion…" aria-label="Rechercher">
+  </form>
   <div class="panneau" id="panneau-edition" role="tabpanel" aria-labelledby="onglet-edition">
     <ol class="sommaire">${e.articles.map((a) => entreeSommaire(a, r, { courant: a.cle === p.courant, duree: true })).join("")}</ol>
   </div>
@@ -91,7 +93,7 @@ ${TETE_SCRIPT}
     <span class="barre-outils">
       <a href="${r}recherche.html" class="outil">${ICONES.recherche}<span>Rechercher</span></a>
       <a href="${r}archives.html" class="outil"><span>Archives</span></a>
-      <button type="button" class="outil theme" aria-label="Changer de thème">${ICONES.theme}</button>
+      <button type="button" class="outil theme" aria-label="Passer en mode clair ou sombre">${ICONES.theme}</button>
     </span>
   </div>
   <a class="titre-journal" href="${r}index.html">${echapper(c.nom)}</a>

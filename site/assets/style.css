@@ -298,9 +298,20 @@ a.ressource:hover { border-color: var(--accent); transform: translateY(-1px); co
 .suite a span { display: block; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
 .suite-suiv { text-align: right; }
 
+/* ---------- Bouton clair / sombre : il montre le mode vers lequel il bascule ---------- */
+
+.theme .icone-soleil { display: none; }
+:root[data-theme="dark"] .theme .icone-lune { display: none; }
+:root[data-theme="dark"] .theme .icone-soleil { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme .icone-lune { display: none; }
+  :root:not([data-theme="light"]) .theme .icone-soleil { display: inline; }
+}
+
 /* ---------- Carte de situation ---------- */
 
 .carte { max-width: 800px; margin: 0 auto 30px; }
+.article-entete .carte { margin: 4px auto 22px; text-align: left; }
 .carte svg { display: block; width: 100%; height: auto; border-top: 2px solid var(--filet-fort); border-bottom: 1px solid var(--filet); }
 .carte-mer { fill: var(--carte-mer); }
 .carte-terres path { fill: var(--carte-terre); stroke: var(--carte-trait); stroke-width: 1; stroke-linejoin: round; }
@@ -377,7 +388,7 @@ a.ressource:hover { border-color: var(--accent); transform: translateY(-1px); co
 
 @media (max-width: 820px) {
   body { font-size: 16.5px; }
-  .carte { margin: 0 calc(var(--marge, 16px) * -1) 22px; }
+  .carte, .article-entete .carte { margin: 4px calc(var(--marge, 16px) * -1) 18px; }
   .carte figcaption { padding: 0 var(--marge, 16px); }
   .une { grid-template-columns: 1fr; gap: 26px; }
   .edito { border-left: 0; padding-left: 0; border-top: 1px solid var(--filet); padding-top: 18px; }

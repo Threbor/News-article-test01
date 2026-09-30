@@ -127,7 +127,7 @@ collecte, comme sur GitHub, le dossier de dépêches réduit encore les recherch
 
 ## Cartes de situation
 
-Chaque article porte une carte, placée entre le chapô et « En bref ». Elle est
+Chaque article porte une carte, placée juste après le titre. Elle est
 dessinée en SVG au moment de la construction : pas de service extérieur, pas de
 script, et elle suit le thème clair ou sombre. Elle est décrite dans l'en-tête de
 l'article :

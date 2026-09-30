@@ -62,11 +62,11 @@ export function pageArticle(a, edition, config) {
   <header class="article-entete">
     ${surtitre(a, r, { double: true })}
     <h1>${inline(a.titre)}</h1>
+    ${a.carte ? dessinerCarte(a.carte, config.monde) : ""}
     <p class="chapo">${chapo(a.chapo)}</p>
     <p class="meta">${enTeteMeta}</p>
     ${a.nbSources && !breves ? AIDE : ""}
   </header>
-  ${a.carte ? dessinerCarte(a.carte, config.monde) : ""}
   <div class="article-grille">
     <div class="article-principal">
       ${principal}
