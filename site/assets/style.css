@@ -71,8 +71,6 @@ h1, h2, h3 { font-family: var(--titre); font-weight: 700; line-height: 1.16; mar
 main, .masthead, .pied, .cahiers-defil { max-width: var(--largeur); margin: 0 auto; padding: 0 16px; }
 main { padding-top: 28px; padding-bottom: 32px; }
 
-.evitement { position: absolute; left: -9999px; }
-.evitement:focus { left: 16px; top: 8px; background: var(--papier); padding: 6px 10px; z-index: 20; }
 .visuel-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* ---------- Liens vers les sources ---------- */

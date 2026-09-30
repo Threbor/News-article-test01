@@ -7,7 +7,9 @@ import { flux, indexRecherche, pageNotions, pageRecherche } from "./outils.mjs";
 import { pageUne } from "./une.mjs";
 import { page } from "./page.mjs";
 
-export function construireSite(editions, config, { base = "" } = {}) {
+// empreintes : { "app.js": "3f2a…" } — voir bin/construire.mjs.
+export function construireSite(editions, configuration, { base = "", empreintes = {} } = {}) {
+  const config = { ...configuration, empreintes };
   const fichiers = new Map();
   const [dujour] = editions;
 

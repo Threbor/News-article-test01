@@ -4,6 +4,10 @@
 import { ICONES, echapper, entreeSommaire } from "./composants.mjs";
 import { dateLongue, majuscule } from "../lib/texte.mjs";
 
+// URL d'un fichier de site/assets, suivie de l'empreinte de son contenu : un navigateur ne peut
+// ainsi jamais garder en cache une ancienne version d'un script avec des pages récentes.
+const actif = (p, nom) => `${p.racine}assets/${nom}${p.config.empreintes?.[nom] ? `?v=${p.config.empreintes[nom]}` : ""}`;
+
 const TETE_SCRIPT = `<script>try{var d=document.documentElement;d.classList.add("js");var t=localStorage.getItem("theme");if(t)d.dataset.theme=t;var s=localStorage.getItem("taille");if(s)d.dataset.taille=s}catch(e){}</script>`;
 
 function barreBas(p) {
@@ -11,7 +15,7 @@ function barreBas(p) {
   if (p.barre?.type === "article") {
     const b = p.barre;
     return `<nav class="barre-bas barre-bas-article" aria-label="Navigation dans l’édition">
-  <a class="bb-bouton" href="#edition-nav" data-ouvrir="edition" aria-haspopup="dialog">${ICONES.sommaire}Sommaire</a>
+  <a class="bb-bouton" href="index.html" data-ouvrir="edition" aria-haspopup="dialog">${ICONES.sommaire}Sommaire</a>
   <p class="bb-etat"><span class="bb-position">${b.position}</span><span class="bb-reste">≈ ${b.minutes} min restante${b.minutes > 1 ? "s" : ""}</span></p>
   <a class="bb-suivant" href="${b.suivant.href}" aria-label="${echapper(b.suivant.aria)}">${b.suivant.label} →</a>
 </nav>`;
@@ -74,12 +78,11 @@ ${TETE_SCRIPT}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${r}assets/style.css">
-<link rel="stylesheet" href="${r}assets/mobile.css">
+<link rel="stylesheet" href="${actif(p, "style.css")}">
+<link rel="stylesheet" href="${actif(p, "mobile.css")}">
 <link rel="alternate" type="application/rss+xml" title="${echapper(c.nom)}" href="${r}flux.xml">
 </head>
 <body class="${p.corps}" data-racine="${r}">
-<a class="evitement" href="#contenu">Aller au contenu</a>
 <div class="progression" aria-hidden="true"><span></span></div>
 <div class="bandeau"><a class="bandeau-nom" href="${r}index.html">${echapper(c.nom)}</a><span class="bandeau-info">${p.bandeau}</span></div>
 <header class="masthead">
@@ -106,7 +109,7 @@ ${p.contenu}
 </footer>
 ${barreBas(p)}
 ${feuilleSommaire(p)}
-<script src="${r}assets/app.js" defer></script>
+<script src="${actif(p, "app.js")}" defer></script>
 </body>
 </html>
 `;

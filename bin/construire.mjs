@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Construit le site statique à partir des éditions.
 
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { principal } from "../lib/cli.mjs";
@@ -24,10 +25,13 @@ principal((o) => {
   const base = (process.env.SITE_URL || (vercel ? `https://${vercel}` : "")).replace(/\/$/, "");
 
   const editions = chargerEditions(contenu, config);
-  const fichiers = construireSite(editions, config, { base });
+  const assets = chemin("site", "assets");
+  const empreintes = Object.fromEntries(fs.readdirSync(assets).map((f) => [f,
+    crypto.createHash("sha256").update(fs.readFileSync(path.join(assets, f))).digest("hex").slice(0, 10)]));
+  const fichiers = construireSite(editions, config, { base, empreintes });
 
   fs.rmSync(sortie, { recursive: true, force: true });
-  fs.cpSync(chemin("site", "assets"), path.join(sortie, "assets"), { recursive: true });
+  fs.cpSync(assets, path.join(sortie, "assets"), { recursive: true });
   for (const [rel, texte] of fichiers) {
     const f = path.join(sortie, rel);
     fs.mkdirSync(path.dirname(f), { recursive: true });

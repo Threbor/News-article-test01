@@ -64,6 +64,9 @@ test("chaîne : rubrique, éditorial, journal de consommation, site", () => {
   assert.match(art, /class="ext appel"/);
   assert.match(art, /class="terme"/);
   assert.match(art, /id="feuille-sommaire"/);
+  assert.match(art, /assets\/app\.js\?v=[0-9a-f]{10}"/, "les ressources portent l'empreinte de leur contenu");
+  assert.match(art, /class="bb-bouton" href="index\.html" data-ouvrir="edition"/, "sans script, Sommaire mène au sommaire de l'édition");
+  assert.doesNotMatch(art, /Aller au contenu/);
 });
 
 test("chaîne : une réponse sans en-tête est rejetée bruyamment", () => {
