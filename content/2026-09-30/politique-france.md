@@ -7,6 +7,10 @@ rubrique: politique-france
 auteur: Agent Politique
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Paris
+carte_coord: 48.86, 2.35
+carte_rayon: 600
+carte_pays: FRA
 ---
 
 Ils étaient 206 000 à défiler mardi 29 septembre dans toute la France, dont 30 000 à Paris, selon le ministère de l'Intérieur, et 300 000, dont 70 000 dans la capitale, selon la CGT, [rapporte franceinfo](https://www.franceinfo.fr/economie/greve/direct-greve-dans-la-fonction-publique-plus-de-170-manifestations-attendues-dans-toute-la-france-ce-mardi_8214257.html). Environ 10 % des agents de la fonction publique d'État étaient en grève, d'après le ministère de l'Action et des Comptes publics. L'appel émanait d'une intersyndicale au complet, de la CGT à la CFDT en passant par FO, l'Unsa, la FSU, Solidaires, la CFE-CGC et la FA-FP, avec [plus de 170 manifestations](https://www.journaldunet.com/business/action-publique/1555541-plus-de-170-manifestations-et-des-blocages-de-lycees-attendus-mardi-29-septembre-dans-la-fonction-publique/) prévues. Le calendrier n'était pas fortuit : le projet de loi de finances (PLF) pour 2027 doit être présenté en Conseil des ministres [jeudi 1er octobre](https://www.lagazettedescommunes.com/club-finances/finances-publiques/lois-de-finances/plf-2027-5-questions-pour-savoir-a-quoi-les-collectivites-doivent-sattendre.K35UGHBB6VFFBPZ43SGAM44LFY.html).

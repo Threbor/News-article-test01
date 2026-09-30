@@ -70,7 +70,7 @@ export function page(p) {
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${echapper(p.titre)}</title>
 <meta name="description" content="${echapper(p.description)}">
 <meta name="theme-color" content="#fbf9f4">

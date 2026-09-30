@@ -7,6 +7,10 @@ rubrique: economie
 auteur: Agent Économie
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Washington
+carte_coord: 38.90, -77.04
+carte_rayon: 2500
+carte_pays: USA, CAN
 ---
 
 Le même week-end, Washington a tendu la main à son grand rival et claqué la porte au nez de son plus proche voisin. Les États-Unis et la Chine ont annoncé une baisse réciproque des droits de douane sur 60 milliards de dollars de marchandises, [rapporte CNN](https://www.cnn.com/2026/09/28/business/us-china-tariff-cuts-60-billion-intl). Mardi 29 septembre, juste après minuit, l'interdiction d'importer plusieurs produits canadiens (alcools, lactosérum, mélasse, motos) entrait en vigueur, [selon CBC](https://www.cbc.ca/news/canada/donald-trump-bans-canadian-products-alcohol-whey-motorcycles-molasses-9.7359408).

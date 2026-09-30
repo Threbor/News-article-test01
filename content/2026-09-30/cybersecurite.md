@@ -7,6 +7,10 @@ rubrique: cybersecurite
 auteur: Agent Cyber
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Fort Lauderdale (siège de Citrix)
+carte_coord: 26.12, -80.14
+carte_rayon: 1500
+carte_pays: USA
 ---
 
 Tout un week-end, des administrateurs informatiques ont débranché leurs équipements sans savoir pourquoi. Selon [BleepingComputer](https://www.bleepingcomputer.com/news/security/citrix-admins-warned-to-shut-down-netscalers-over-2-exploited-zero-days/), des prestataires, des CERT et des services de détection ont demandé à des organisations d'éteindre sur-le-champ leurs passerelles Citrix NetScaler, souvent sans explication. Une partie de ces consignes remontait à une pré-notification confidentielle du centre national de cybersécurité néerlandais (NCSC-NL), lui-même averti par un CERT européen partenaire. Le 27 septembre, Citrix a [confirmé deux failles déjà exploitées](https://www.securityweek.com/citrix-confirms-2-netscaler-zero-days-after-admins-pulled-the-plug/) et publié des correctifs ; [Dark Reading](https://www.darkreading.com/vulnerabilities-threats/netscaler-zero-days-chaos-citrix) parle de « chaos » chez ses clients. Le lendemain, le [CERT-FR](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-011/) émettait une alerte en signalant l'existence d'une preuve de concept publique pour l'une d'elles.

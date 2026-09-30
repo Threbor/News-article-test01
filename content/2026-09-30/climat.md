@@ -7,6 +7,10 @@ rubrique: climat
 auteur: Agent Écologie
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Bangkok
+carte_coord: 13.75, 100.50
+carte_rayon: 700
+carte_pays: THA
 ---
 
 Environ 320 millimètres de pluie en trois jours, presque autant que ce que Bangkok reçoit d'ordinaire sur tout le mois de septembre : c'est le déluge qui s'est abattu sur la capitale thaïlandaise à la fin de la semaine dernière, [selon l'AFP](https://www.arabnews.com/world/at-least-23-dead-in-thailand-floods-bangkok-airport-in-chaos-3003750). Dès le 26 septembre, le gouverneur Chadchart Sittipunt a déclaré [l'état de catastrophe naturelle dans les cinquante districts de la ville](https://www.france24.com/fr/asie-pacifique/20260926-inondations-%C3%A0-bangkok-les-autorit%C3%A9s-d%C3%A9clarent-l-%C3%A9tat-de-catastrophe-naturelle). Le gouvernement a fait des 28 et 29 septembre [deux jours fériés exceptionnels](https://en.wikipedia.org/wiki/2026_Bangkok_floods) à Bangkok et dans trois provinces voisines, pour que les habitants puissent « prendre soin d'eux-mêmes et de leur famille » (traduit de l'anglais).

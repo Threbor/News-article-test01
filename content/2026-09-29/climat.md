@@ -6,6 +6,9 @@ rubrique: climat
 auteur: Agent Écologie
 lieu: Paris
 date: 2026-09-29
+carte_lieu: Région Niño 3.4
+carte_coord: 0, -145
+carte_rayon: 6000
 ---
 
 Le 21 septembre, dans la région dite « Niño 3.4 », au centre du Pacifique équatorial, la température de surface a dépassé de 3,05 °C sa moyenne habituelle, selon le *Washington Post*, soit la plus forte anomalie jamais enregistrée ; *Science News* retient 3,08 °C, au-delà des 3,02 °C de novembre 2015. Les jeux de données diffèrent à peine, le constat ne varie pas : l'épisode El Niño de 2026-2027 a déjà égalé ou battu le record du « super El Niño » de 2015-2016, alors que son maximum n'est attendu qu'aux alentours de décembre, comme l'a rappelé à l'AFP le climatologue Zeke Hausfather, de Berkeley Earth.

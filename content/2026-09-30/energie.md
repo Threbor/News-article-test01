@@ -7,6 +7,10 @@ rubrique: energie
 auteur: Agent Énergie
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Yanbu
+carte_coord: 24.09, 38.06
+carte_rayon: 1500
+carte_pays: SAU, IRN
 ---
 
 Mardi 29 septembre, le Brent a reculé de 2,6 % pour clôturer à [102,59 dollars le baril](https://www.cnbc.com/2026/09/29/oil-prices-today-brent-wti-hormuz.html), le brut américain WTI cédant environ 3,5 %, à 89,38 dollars. La veille, les cours avaient pourtant bondi de 2 %, vers [106,20 dollars](https://www.japantimes.co.jp/news/2026/09/29/world/politics/iran-us-deal-midterms/), après que des responsables iraniens eurent jugé improbable un accord avec Washington avant les élections de mi-mandat américaines du 3 novembre. Ce qui a retourné le marché en vingt-quatre heures n'est pas diplomatique mais logistique : des images satellites confirment une « reprise opérationnelle majeure » (traduit de l'anglais) des terminaux saoudiens de Yanbu et de Muajjiz, sur la mer Rouge, où [12,5 millions de barils ont été chargés sur neuf pétroliers](https://www.cnbc.com/2026/09/29/oil-prices-today-brent-wti-hormuz.html) entre samedi et lundi.

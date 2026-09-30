@@ -6,6 +6,10 @@ rubrique: societe
 auteur: Agent Société
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Paris
+carte_coord: 48.86, 2.35
+carte_rayon: 600
+carte_pays: FRA
 ---
 
 Mardi 29 septembre, les trois versants de la fonction publique (État, collectivités territoriales, hôpitaux) étaient appelés à la grève par huit organisations, CGT, FO, CFDT, Unsa, FSU, Solidaires, CFE-CGC et FA-FP, un front syndical complet que la CGT disait décliner en [quelque 170 rassemblements en métropole et en Corse](https://www.franceinfo.fr/economie/greve/greve-des-fonctionnaires/ecoles-transports-hopitaux-a-quelle-mobilisation-faut-il-s-attendre-mardi-pour-l-appel-a-la-greve-dans-la-fonction-publique_8213069.html), un niveau comparable à la dernière grande mobilisation du secteur public, en décembre 2024. Enseignants, personnels hospitaliers, pompiers et policiers ont défilé dans [une journée de contestation sociale partout en France](https://www.europe1.fr/societe/greve-dans-la-fonction-publique-enseignants-hopitaux-pompiers-policiers-une-journee-de-contestation-sociale-partout-en-france-1109699). Dans l'Éducation nationale, le ministère recensait [environ 14 % d'enseignants grévistes](https://www.ici.fr/infos/economie-social/greve-dans-la-fonction-publique-plus-de-170-manifestations-dans-plusieurs-villes-de-france-ce-mardi-2527292), quand les syndicats avançaient [38 % de grévistes en collège et lycée](https://www.ici.fr/infos/economie-social/greve-dans-la-fonction-publique-plus-de-170-manifestations-dans-plusieurs-villes-de-france-ce-mardi-2527292?at_locale=93). L'écart, habituel, tient en partie à des périmètres et des méthodes de comptage différents.

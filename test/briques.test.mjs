@@ -11,6 +11,8 @@ import { chargerConfig } from "../lib/config.mjs";
 import { rendreCorps, marquerTermes } from "../site/corps.mjs";
 import { classer, dedoublonner, lireFlux } from "../lib/flux.mjs";
 import { couperChapo, titreCourt, typographier } from "../lib/texte.mjs";
+import { lireCarte } from "../lib/pays.mjs";
+import { dessinerCarte } from "../site/carte.mjs";
 
 const fixture = (f) => fs.readFileSync(new URL(`fixtures/${f}`, import.meta.url), "utf8");
 const config = chargerConfig();
@@ -49,11 +51,13 @@ test("règles : conforme, puis défauts détectés", () => {
   const a = lireArticle(fixture("international.md"), { date: "2099-01-05", slug: "international" });
   const regles = config.formats.article.regles;
   assert.deepEqual(controler(a, regles), []);
-  const abime = { ...a, enBref: a.enBref.slice(0, 2), notions: [], brut: a.brut + "\n[[x|inconnue]]" };
+  const abime = { ...a, enBref: a.enBref.slice(0, 2), notions: [], carte_pays: "XYZ", brut: a.brut + "\n[[x|inconnue]]" };
   const p = controler(abime, regles);
   assert.ok(p.some((x) => x.includes("En bref")));
   assert.ok(p.some((x) => x.includes("Notions clés")));
   assert.ok(p.some((x) => x.includes("inconnue")));
+  assert.ok(p.some((x) => x.includes("XYZ")), "un code pays inconnu est signalé");
+  assert.ok(controler({ ...a, carte_lieu: undefined, carte_coord: undefined }, regles).some((x) => x.includes("carte manquante")));
 });
 
 test("corps : appels numérotés comme la liste des sources, lien inconnu ajouté", () => {
@@ -90,4 +94,24 @@ test("flux : RSS et Atom, classement, doublons", () => {
   assert.equal(classer(rss[1], { rubriques: [] }, rubs), "economie");
   assert.equal(classer(rss[1], { rubriques: ["europe"] }, rubs), "europe", "un flux thématique impose sa rubrique");
   assert.equal(dedoublonner([...rss, ...rss]).length, 2);
+});
+
+test("carte : lecture de l'en-tête et dessin", () => {
+  const c = lireCarte({ carte_lieu: "Ceuta", carte_coord: "35.89, -5.32", carte_rayon: "350", carte_pays: "ESP, mar" });
+  assert.deepEqual(c, { lieu: "Ceuta", lat: 35.89, lon: -5.32, rayon: 350, pays: ["ESP", "MAR"] });
+  assert.equal(lireCarte({}), null);
+  assert.throws(() => lireCarte({ carte_lieu: "X", carte_coord: "nord" }), /latitude, longitude/);
+  const svg = dessinerCarte(c, "monde.svg");
+  assert.match(svg, /<figure class="carte">/);
+  assert.match(svg, /ESPAGNE/);
+  assert.match(svg, /MAROC/);
+  assert.ok(svg.length < 60000, "la carte reste légère");
+  // Pacifique central : les contours qui franchissent l'antiméridien ne doivent pas traverser la carte.
+  const pacifique = dessinerCarte({ lieu: "Niño 3.4", lat: 0, lon: -145, rayon: 6000, pays: [] }, "monde.svg");
+  const largeurs = [...pacifique.matchAll(/<path d="([^"]+)"/g)].map((m) => {
+    const xs = [...m[1].matchAll(/[ML](-?[\d.]+) (-?[\d.]+)/g)]
+      .filter(([, x, y]) => x >= 0 && x <= 640 && y >= 0 && y <= 400).map(([, x]) => +x);
+    return xs.length ? Math.max(...xs) - Math.min(...xs) : 0;
+  });
+  assert.ok(Math.max(...largeurs) < 600, "aucun contour visible ne balaie toute la largeur");
 });

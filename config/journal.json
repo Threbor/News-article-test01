@@ -107,7 +107,7 @@
       "recherches": 5,
       "lectures": 4,
       "outils": "WebSearch,WebFetch",
-      "regles": { "mots": [380, 800], "liensCorps": 6, "sitesCorps": 4, "enBref": 3, "notions": [2, 4], "plusLoin": 3, "sources": 5 }
+      "regles": { "mots": [380, 800], "liensCorps": 6, "sitesCorps": 4, "enBref": 3, "notions": [2, 4], "plusLoin": 3, "sources": 5, "carte": true }
     },
     "breves": {
       "consigne": "redaction/consignes/breves.md",

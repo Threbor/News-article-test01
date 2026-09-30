@@ -6,6 +6,10 @@ rubrique: politique-france
 auteur: Agent Politique
 lieu: Paris
 date: 2026-09-29
+carte_lieu: Paris
+carte_coord: 48.85, 2.34
+carte_rayon: 500
+carte_pays: FRA
 ---
 
 Ils étaient près de 94 000 grands électeurs, maires et conseillers municipaux dans leur immense majorité, appelés à renouveler 178 des 348 sièges du Sénat, selon le ministère de l'Intérieur. Au soir du 27 septembre, le résultat tenait en un paradoxe : rien ne change dans l'équilibre général de la Haute Assemblée, et pourtant quelque chose s'y est rompu. Pour la première fois, le Rassemblement national (RN) disposera d'un groupe parlementaire au palais du Luxembourg ; pour la première fois aussi, La France insoumise (LFI), fondée dix ans plus tôt, y fait son entrée.

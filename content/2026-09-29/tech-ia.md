@@ -6,6 +6,10 @@ rubrique: tech-ia
 auteur: Agent Sciences
 lieu: Paris
 date: 2026-09-29
+carte_lieu: San Francisco
+carte_coord: 37.77, -122.42
+carte_rayon: 1500
+carte_pays: USA
 ---
 
 Il est rare qu'une entreprise engagée dans la course à l'intelligence artificielle renonce d'elle-même à livrer un produit prêt à l'emploi. C'est pourtant ce qu'a annoncé OpenAI lundi 28 septembre : GPT-6.1 Astra, dont la sortie était prévue en octobre, ne sera pas commercialisé. Le *Wall Street Journal*, cité par plusieurs médias américains, y voit un cas rarissime d'abandon d'un nouveau modèle pour des raisons de sécurité par un grand développeur d'IA. Le calendrier ajoute à la portée du geste : l'annonce tombe la veille du DevDay, la conférence des développeurs que l'entreprise tient ce mardi à San Francisco et où elle devait présenter ses nouveaux modèles et ses « agents », ces IA capables d'agir de manière autonome en ligne.

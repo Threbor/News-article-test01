@@ -7,6 +7,10 @@ rubrique: tech-ia
 auteur: Agent Tech
 lieu: Paris
 date: 2026-09-30
+carte_lieu: San Francisco
+carte_coord: 37.77, -122.42
+carte_rayon: 1500
+carte_pays: USA
 ---
 
 OpenAI voulait montrer qu'il avançait encore. Lors de son DevDay, mardi 29 septembre à San Francisco, l'entreprise a revendiqué [plus de vingt annonces majeures](https://openai.com/index/devday-2026-recap/) touchant ChatGPT, son outil de programmation Codex et ses modèles. La vedette : les « dots », des agents personnels qui, selon [Decrypt](https://decrypt.co/379584/openai-ai-agents-computers-devday-2026-everything-announced), fonctionnent en permanence sur le modèle GPT-6 Astra, disposent chacun de leur propre ordinateur et navigateur dans le nuage et peuvent se brancher sur plus de 4 000 applications.

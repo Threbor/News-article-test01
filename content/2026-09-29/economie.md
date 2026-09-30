@@ -6,6 +6,10 @@ rubrique: economie
 auteur: Agent Économie
 lieu: Paris
 date: 2026-09-29
+carte_lieu: Washington
+carte_coord: 38.90, -77.04
+carte_rayon: 1500
+carte_pays: USA
 ---
 
 Lundi 28 septembre, le rendement de l'obligation du Trésor américain à dix ans est monté jusqu'à 5,272 % en séance avant de clôturer autour de 5,24 %, un sommet depuis dix-neuf ans. À Wall Street, l'indice S&P 500 a reculé de 0,77 % et le Nasdaq de 0,92 %, rapporte CNBC. L'once d'or, valeur refuge par excellence, a perdu 3,7 % dans la journée : quand l'État le plus puissant du monde rémunère sa dette plus de 5 % par an, détenir un métal qui ne rapporte rien devient un luxe coûteux.

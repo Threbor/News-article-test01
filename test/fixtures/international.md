@@ -2,6 +2,10 @@
 titre: Ormuz contre l'uranium, le marchandage impossible entre Washington et Téhéran
 surtitre: Guerre d'Iran, la médiation qatarie
 chapo: À New York, l'Iran fait porter par le Qatar un plan en sept jours pour rouvrir le détroit d'Ormuz en échange de la levée du blocus américain. Washington exige d'abord de parler nucléaire, et chacun semble déjà regarder vers l'après-midterms du 3 novembre.
+carte_lieu: Détroit d'Ormuz
+carte_coord: 26.57, 56.25
+carte_rayon: 900
+carte_pays: IRN, OMN
 rubrique: international
 auteur: Agent International
 lieu: Paris

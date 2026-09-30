@@ -48,6 +48,7 @@ redaction/             LES CONSIGNES, en texte
   consignes/*.md         gabarit de consigne par format ({{champs}} remplis par bin/dossier)
 content/AAAA-MM-JJ/    LES ARTICLES (Markdown à en-tête), une édition par dossier
 journal/AAAA-MM-JJ.jsonl  consommation de chaque rédaction (tokens, coût, durée)
+donnees/pays.json      fond de carte (Natural Earth, noms français), généré par bin/preparer-carto
 
 bin/                   LES PROGRAMMES (chacun répond à --aide)
   collecter.mjs          flux RSS → dépêches du jour (JSON Lines), sans IA
@@ -61,6 +62,7 @@ bin/                   LES PROGRAMMES (chacun répond à --aide)
   construire.mjs         content/ → _site/
   journal.mjs            bilan de consommation
   exporter-design.sh     archive pour Claude Design
+  preparer-carto.mjs     world-atlas + codes ISO → donnees/pays.json (à relancer rarement)
 
 lib/                   LE MÉCANISME, en fonctions pures (texte, markdown, article,
                        edition, regles, flux, config, cli)
@@ -122,6 +124,25 @@ dépêches : **environ 64 000 tokens, 10 tours, 58 secondes**. L'ancienne chaîn
 consommait 75 000 à 110 000 tokens par article. Là où le réseau permet la
 collecte, comme sur GitHub, le dossier de dépêches réduit encore les recherches.
 `node bin/journal.mjs` permet de suivre la consommation au fil des jours.
+
+## Cartes de situation
+
+Chaque article porte une carte, placée entre le chapô et « En bref ». Elle est
+dessinée en SVG au moment de la construction : pas de service extérieur, pas de
+script, et elle suit le thème clair ou sombre. Elle est décrite dans l'en-tête de
+l'article :
+
+```
+carte_lieu: Détroit d'Ormuz        nom écrit sur la carte
+carte_coord: 26.57, 56.25          centre (latitude, longitude)
+carte_rayon: 900                   demi-largeur en km (300 ville, 900 pays, 2 500 continent)
+carte_pays: IRN, OMN, ARE          pays mis en valeur (codes ISO à trois lettres)
+```
+
+La carte montre les pays cités, le repère du lieu, une échelle en kilomètres et
+une vignette qui situe la zone sur le globe. Un code pays inconnu ou des
+coordonnées invalides font échouer la vérification. Fond : Natural Earth
+(domaine public), via world-atlas (ISC) ; noms français : i18n-iso-countries (MIT).
 
 ## Expérience smartphone
 

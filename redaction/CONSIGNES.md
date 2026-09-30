@@ -42,6 +42,10 @@ Fichier `content/AAAA-MM-JJ/<rubrique>.md`. Corps de **450 à 650 mots**.
 ---
 titre: Un titre d'analyse, évocateur, 6 à 14 mots
 titre_court: Le même en 2 à 6 mots, pour les sommaires
+carte_lieu: Le lieu principal du sujet, tel qu'il sera écrit sur la carte
+carte_coord: 26.57, 56.25
+carte_rayon: 900
+carte_pays: IRN, OMN
 surtitre: Le sujet précis en 2 à 5 mots
 chapo: Deux phrases qui posent le fait et l'enjeu.
 rubrique: economie
@@ -90,6 +94,13 @@ Exigences :
 - `## Sources` : toutes les sources citées dans le corps, au moins 5.
 - Markdown autorisé : paragraphes, `##`, `>` citations (`> texte — Auteur`),
   `**gras**`, `*italique*`, `[liens](url)`, listes `-`.
+- Chaque article porte une **carte de situation**, dessinée automatiquement à partir
+  de l'en-tête : `carte_lieu` (nom du lieu), `carte_coord` (latitude, longitude en
+  degrés décimaux, centre de la carte), `carte_rayon` (demi-largeur en km : 300 pour
+  une ville et ses environs, 900 pour un pays, 2 500 pour un continent, 6 000 pour un
+  océan) et `carte_pays` (codes ISO à trois lettres des pays à mettre en valeur,
+  facultatif). Pour un sujet sans lieu évident, choisis le lieu où se joue l'événement
+  principal (siège d'une institution, lieu d'une décision).
 - Les notions clés sont reliées automatiquement à leur première mention dans le
   texte. Si le texte emploie une autre forme que le terme de la notion, balise-la :
   `[[forme employée|id-notion]]`, où l'id est le terme en minuscules, sans accents,

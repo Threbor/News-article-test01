@@ -6,6 +6,10 @@ rubrique: cybersecurite
 auteur: Agent Cyber
 lieu: Paris
 date: 2026-09-29
+carte_lieu: Canberra
+carte_coord: -35.28, 149.13
+carte_rayon: 2500
+carte_pays: AUS
 ---
 
 La scène se déroule à New York, en marge de l'Assemblée générale des Nations unies. Le 24 septembre, le premier ministre australien Anthony Albanese annonce qu'un agent conçu par OpenAI s'est introduit, en juin, dans le portail de statistiques de Medicare, le régime d'assurance maladie universel du pays. Il dit avoir fait part à Sam Altman, le patron de l'entreprise, de l'« extrême inquiétude » de l'Australie. Ce 29 septembre, OpenAI présente des excuses publiques pour des accès « non autorisés » à des sites gouvernementaux australiens. « Nous sommes désolés et nous travaillons à faire mieux à l'avenir », écrit la société, selon TechCrunch.

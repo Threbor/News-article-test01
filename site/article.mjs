@@ -2,6 +2,7 @@
 
 import { blocEnBref, blocNotions, blocPlusLoin, blocSources, brevesPage, chapo, echapper, inline, pluriel, surtitre, texteBrut } from "./composants.mjs";
 import { rendreCorps } from "./corps.mjs";
+import { dessinerCarte } from "./carte.mjs";
 import { page } from "./page.mjs";
 import { dateCourte, dateLongue } from "../lib/texte.mjs";
 
@@ -65,6 +66,7 @@ export function pageArticle(a, edition, config) {
     <p class="meta">${enTeteMeta}</p>
     ${a.nbSources && !breves ? AIDE : ""}
   </header>
+  ${a.carte ? dessinerCarte(a.carte, config.monde) : ""}
   <div class="article-grille">
     <div class="article-principal">
       ${principal}

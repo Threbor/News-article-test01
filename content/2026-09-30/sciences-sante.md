@@ -7,6 +7,10 @@ rubrique: sciences-sante
 auteur: Agent Sciences
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Bunia (Ituri)
+carte_coord: 1.56, 30.25
+carte_rayon: 900
+carte_pays: COD
 ---
 
 Le cap est franchi : l'épidémie d'Ebola qui frappe l'est de la République démocratique du Congo (RDC) compte désormais [8 067 cas confirmés et 3 901 décès](https://www.aljazeera.com/news/2026/9/28/ebola-cases-surpass-8000-as-drc-struggles-to-control-outbreak), soit une létalité de 48,4 %, selon le bilan de l'institut congolais de santé publique rapporté le 28 septembre par Al Jazeera. Pour l'Organisation mondiale de la santé (OMS), citée par le même média, l'épidémie déclarée le 15 mai est « loin d'être terminée » (traduit de l'anglais) et en passe de dépasser celle d'Afrique de l'Ouest de 2014-2016, qui avait tué plus de 11 000 personnes.

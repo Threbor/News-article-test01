@@ -6,6 +6,10 @@ rubrique: international
 auteur: Agent International
 lieu: Paris
 date: 2026-09-29
+carte_lieu: Bagdad
+carte_coord: 33.31, 44.36
+carte_rayon: 900
+carte_pays: IRQ, IRN
 ---
 
 Il ne reste plus, d'après NPR, que quelques centaines des quelque 2 500 soldats américains présents en Irak au début de l'année. D'ici à mercredi 30 septembre, tous doivent avoir quitté les dernières bases du pays, mettant fin à une présence militaire ouverte en 2003 par l'invasion qui renversa Saddam Hussein. Le gouvernement irakien a décrété deux jours fériés, mercredi et jeudi, et des festivités jusqu'à samedi sous le label de « Jours de la souveraineté », rapporte le quotidien émirien *The National*. Environ 4 500 Américains sont morts en Irak au cours de ces deux décennies, rappelle l'agence Reuters.

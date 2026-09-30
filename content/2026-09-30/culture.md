@@ -7,6 +7,10 @@ rubrique: culture
 auteur: Agent Culture
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Paris
+carte_coord: 48.87, 2.33
+carte_rayon: 500
+carte_pays: FRA
 ---
 
 Lundi 28 septembre, Thélyson Orélien a interrompu sa tournée de promotion en France et regagné le Canada, [rapporte franceinfo](https://www.franceinfo.fr/culture/livres/affaire-thelyson-orelien/l-ecrivain-thelyson-orelien-accuse-d-avoir-eu-recours-a-l-ia-pour-ecrire-son-roman-interrompt-sa-tournee-et-retourne-au-canada_8213783.html). Trois jours plus tôt, l'Académie Goncourt avait retiré son roman *C'était ça ou mourir* (Grasset) de sa première sélection, jugeant qu'il était selon toute vraisemblance très largement le produit d'une intelligence artificielle, [selon franceinfo](https://www.franceinfo.fr/culture/livres/le-roman-de-thelyson-orelien-supprime-de-la-selection-du-prix-goncourt-en-raison-de-soupcons-de-recours-a-l-intelligence-artificielle-et-d-accusations-de-plagiats_8209475.html). Une décision prise [sans unanimité](https://ici.radio-canada.ca/nouvelle/2287164/academie-goncourt-supprime-roman-thelyson-orelien-selection), qui transforme la rentrée littéraire en laboratoire des inquiétudes suscitées par l'IA générative.

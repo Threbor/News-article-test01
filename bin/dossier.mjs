@@ -60,6 +60,7 @@ function decrireRegles(r = {}) {
   if (r.plusLoin) d.push(`au moins ${r.plusLoin} ressources dans « Pour aller plus loin »`);
   if (r.sources) d.push(`au moins ${r.sources} sources avec lien`);
   if (r.breves) d.push(`au moins ${r.breves} brèves, chacune avec un lien`);
+  if (r.carte) d.push("carte de situation décrite par « carte_lieu » et « carte_coord » (codes « carte_pays » valides)");
   if (r.une) d.push("clé « une » dans l'en-tête");
   return d.join(" ; ") + ".";
 }

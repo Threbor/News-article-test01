@@ -23,6 +23,6 @@ N'utilise que des URL présentes dans le dossier, vues dans tes recherches ou lu
 
 # Réponse attendue
 
-Réponds UNIQUEMENT par le contenu complet du fichier Markdown de l'article. Il commence par la ligne « --- ». N'ajoute rien avant ni après, ni commentaire ni bloc de code. L'en-tête doit contenir `rubrique: {{rubrique}}`, `auteur: {{agent}}` et `date: {{date}}`, plus `titre_court:` (2 à 6 mots, pour les sommaires).
+Réponds UNIQUEMENT par le contenu complet du fichier Markdown de l'article. Il commence par la ligne « --- ». N'ajoute rien avant ni après, ni commentaire ni bloc de code. L'en-tête doit contenir `rubrique: {{rubrique}}`, `auteur: {{agent}}` et `date: {{date}}`, plus `titre_court:` (2 à 6 mots, pour les sommaires) et les clés de la carte de situation (`carte_lieu`, `carte_coord`, `carte_rayon`, `carte_pays`).
 
 Contrôles automatiques appliqués à ta réponse : {{regles}}

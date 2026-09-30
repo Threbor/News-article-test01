@@ -6,11 +6,16 @@ import { pageArchives, pageCahier, pageRubrique, pageSommaire } from "./listes.m
 import { flux, indexRecherche, pageNotions, pageRecherche } from "./outils.mjs";
 import { pageUne } from "./une.mjs";
 import { page } from "./page.mjs";
+import { dessinerMonde } from "./carte.mjs";
+import crypto from "node:crypto";
 
 // empreintes : { "app.js": "3f2a…" } — voir bin/construire.mjs.
 export function construireSite(editions, configuration, { base = "", empreintes = {} } = {}) {
-  const config = { ...configuration, empreintes };
   const fichiers = new Map();
+  const monde = dessinerMonde();
+  fichiers.set("assets/monde.svg", monde);
+  const config = { ...configuration, empreintes,
+    monde: `../assets/monde.svg?v=${crypto.createHash("sha256").update(monde).digest("hex").slice(0, 10)}` };
   const [dujour] = editions;
 
   if (!dujour) {

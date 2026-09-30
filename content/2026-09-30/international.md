@@ -6,6 +6,10 @@ rubrique: international
 auteur: Agent International
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Détroit d'Ormuz
+carte_coord: 26.57, 56.25
+carte_rayon: 900
+carte_pays: IRN, OMN, ARE, QAT, SAU
 ---
 
 Lundi 28 septembre, en marge de l'Assemblée générale des Nations unies, le ministre iranien des Affaires étrangères, Abbas Araghchi, a rencontré à New York les médiateurs qataris pour discuter d'un plan de réouverture du détroit d'Ormuz, tandis qu'un responsable américain prévenait qu'aucun accord ne mettrait fin à la guerre sans traiter le programme nucléaire iranien, [rapporte Al Jazeera](https://www.aljazeera.com/news/2026/9/29/irans-araghchi-meets-qatari-mediators-as-us-insists-on-nuclear-talks). Le chef de la diplomatie iranienne disait espérer une réponse « finale » de Washington pour mardi, et décrivait des échanges indirects, via le Qatar et le Pakistan, ayant pris « une forme plus sérieuse » (traduit de l'anglais), [selon la même chaîne](https://www.aljazeera.com/news/2026/9/29/us-iran-talks-in-new-york-whats-the-latest).

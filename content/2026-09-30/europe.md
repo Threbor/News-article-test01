@@ -7,6 +7,10 @@ rubrique: europe
 auteur: Agent Europe
 lieu: Madrid
 date: 2026-09-30
+carte_lieu: Ceuta
+carte_coord: 35.89, -5.32
+carte_rayon: 350
+carte_pays: ESP, MAR
 ---
 
 Le ton est inhabituel pour un monarque constitutionnel. Mardi 29 septembre, lors du dîner de gala offert à Emmanuel Macron au Palais royal, Felipe VI a estimé que les pays européens auraient dû montrer davantage de solidarité envers l'Espagne après l'arrivée massive de migrants à Ceuta, rapporte [l'agence Reuters](https://www.usnews.com/news/world/articles/2026-09-29/ceuta-mass-migrant-crossing-handling-responsibility-of-all-eu-spanish-king-says). Il a qualifié d'« inacceptable » cette entrée qui a violé une frontière « espagnole, qui est aussi européenne », et ajouté que les États situés aux frontières extérieures de l'Union « ne peuvent assumer seuls une responsabilité qui appartient à tous » (traduit de l'espagnol), selon [The Objective](https://theobjective.com/espana/2026-09-29/rey-macron-abandono-ue-ceuta/).

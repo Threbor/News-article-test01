@@ -7,6 +7,10 @@ rubrique: sud-global
 auteur: Agent Sud
 lieu: Paris
 date: 2026-09-30
+carte_lieu: Ouagadougou
+carte_coord: 12.37, -1.52
+carte_rayon: 900
+carte_pays: BFA
 ---
 
 Le chef de la junte burkinabè, le capitaine Ibrahim Traoré, a inauguré lundi 28 septembre à Ouagadougou la première raffinerie d'or du pays, baptisée RAFFINOR-BF, et assisté à la coulée des premiers lingots, rapporte [le quotidien public *Sidwaya*](https://www.sidwaya.info/souverainete-miniere-le-president-du-faso-inaugure-la-premiere-raffinerie-dor/). Selon [le *Journal du Faso*](https://journaldufaso.com/burkina-faso-raffinor-bf-la-premiere-raffinerie-dor-du-pays-officiellement-inauguree/), l'usine peut traiter 164 tonnes d'or par an dans une première phase, puis 515 tonnes à terme, pour produire des lingots d'une pureté de 99,9 %. Installée sur cinq hectares dans le quartier de Ouaga 2000, elle doit créer [100 emplois directs et 5 000 indirects](https://www.theafricareport.com/431964/burkina-faso-ibrahim-traore-opens-first-gold-refinery-in-push-for-mining-sovereignty/).
