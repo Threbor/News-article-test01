@@ -53,7 +53,7 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 4
       matrix:
         rubrique: ${{ fromJSON(needs.preparation.outputs.rubriques) }}
     name: "Rédaction · ${{ matrix.rubrique.nom }}"
@@ -68,25 +68,29 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: |
             --model ${{ env.MODELE }}
-            --max-turns 60
-            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep"
+            --max-turns 80
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(node scripts/verifier.mjs:*),Bash(node scripts/verifier-liens.mjs:*)"
           prompt: |
             Tu es « ${{ matrix.rubrique.agent }} », rédacteur de la rubrique « ${{ matrix.rubrique.nom }} »
             (id : ${{ matrix.rubrique.id }}) du journal d'analyse quotidien décrit dans site.config.json.
             Nous sommes le ${{ needs.preparation.outputs.date }}.
 
-            1. Lis redaction/CONSIGNES.md (charte et format obligatoires) et la consigne de ta rubrique
-               dans site.config.json.
-            2. Regarde les titres des articles de ta rubrique des jours précédents
-               (content/*/${{ matrix.rubrique.id }}.md, lis seulement les en-têtes) pour ne pas
-               répéter un sujet déjà traité, sauf développement nouveau majeur.
-            3. Recherche l'actualité des dernières 24 à 72 heures avec WebSearch, lis les articles
-               clés avec WebFetch, choisis UN sujet fort et analyse-le en profondeur.
-            4. Écris l'article (800 à 1 200 mots, au moins 4 sources réelles avec URL) dans
-               content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md,
-               avec `rubrique: ${{ matrix.rubrique.id }}`, `auteur: ${{ matrix.rubrique.agent }}`
-               et `date: ${{ needs.preparation.outputs.date }}`.
-            N'invente aucun fait, chiffre ou citation. Ne modifie aucun autre fichier.
+            1. Lis EN ENTIER redaction/CONSIGNES.md (charte, règle d'or des sources, format de ta
+               rubrique) et la consigne de ta rubrique dans site.config.json.
+            2. Lis les en-têtes des articles de ta rubrique des jours précédents
+               (content/*/${{ matrix.rubrique.id }}.md) pour ne pas répéter un sujet déjà traité,
+               sauf développement nouveau majeur.
+            3. Recherche l'actualité des dernières 24 à 72 heures avec WebSearch, ouvre les articles
+               clés avec WebFetch et choisis UN sujet fort. Fais aussi des recherches dédiées pour
+               les notions clés et les ressources « Pour aller plus loin ».
+            4. Écris content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md au format
+               de CONSIGNES.md, avec `rubrique: ${{ matrix.rubrique.id }}`,
+               `auteur: ${{ matrix.rubrique.agent }}` et `date: ${{ needs.preparation.outputs.date }}`.
+               Chaque fait porte son lien cliquable ; n'utilise que des URL vues dans tes recherches.
+            5. Lance `node scripts/verifier-liens.mjs <ton fichier>` et remplace chaque lien signalé
+               mort par une autre source réelle, puis `node scripts/verifier.mjs <ton fichier>` et
+               corrige jusqu'à ce qu'il passe.
+            N'invente aucun fait, chiffre, citation ni URL. Ne modifie aucun autre fichier.
 
       - name: Vérification du format
         run: node scripts/verifier.mjs "content/${{ needs.preparation.outputs.date }}/${{ matrix.rubrique.id }}.md"
@@ -136,14 +140,16 @@ jobs:
             Nous sommes le ${{ needs.preparation.outputs.date }}.
             Lis redaction/CONSIGNES.md (section « Éditorial »), puis tous les articles de
             content/${{ needs.preparation.outputs.date }}/.
-            Écris content/${{ needs.preparation.outputs.date }}/editorial.md : 350 à 500 mots,
+            Écris content/${{ needs.preparation.outputs.date }}/editorial.md : 300 à 450 mots,
             `rubrique: editorial`, `auteur: Le rédacteur en chef`, `date: ${{ needs.preparation.outputs.date }}`,
             et `une: <id de la rubrique>` pour l'article qui fera la une. Dégage un fil rouge entre
-            les articles, sans ajouter de fait qui n'y figure pas. Termine par « ## Sources »
-            listant les articles de l'édition. Ne modifie aucun autre fichier.
+            les articles, sans ajouter de fait qui n'y figure pas, en renvoyant à chacun par un lien
+            relatif (`[texte](economie.html)`). Termine par « ## Sources » listant les articles
+            de l'édition sous forme de liens relatifs. Ne modifie aucun autre fichier.
 
-      - name: Vérification et construction
+      - name: Contrôle des liens, vérification et construction
         run: |
+          node scripts/verifier-liens.mjs --corriger content/${{ needs.preparation.outputs.date }}/*.md || true
           node scripts/verifier.mjs content/${{ needs.preparation.outputs.date }}/*.md || true
           node scripts/build.mjs
 

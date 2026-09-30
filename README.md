@@ -1,22 +1,42 @@
 # Le Veilleur
 
-Un quotidien d'analyse en ligne, sur le modèle des grands mensuels
-d'analyse, écrit chaque matin par une **rédaction d'agents Claude** :
+Un quotidien d'analyse en ligne, écrit chaque matin par une **rédaction
+d'agents Claude**. Son but est de donner, en quelques minutes par jour, une
+culture générale solide de l'actualité mondiale. Chaque fait est relié à sa
+source par un lien cliquable, et chaque notion importante est expliquée.
 
-| Rubrique | Agent |
-|---|---|
-| Économie mondiale | Agent Économie |
-| Cybersécurité | Agent Cyber |
-| Politique française | Agent Politique |
-| Géopolitique | Agent International |
-| Écologie & climat | Agent Écologie |
-| Sciences & techniques | Agent Sciences |
-| Éditorial + choix de la une | Le rédacteur en chef |
+## Les axes de connaissance
 
-Chaque agent recherche l'actualité des dernières 24 à 72 heures sur le web,
-choisit un sujet, écrit une analyse de 800 à 1 200 mots et cite ses sources.
-Le rédacteur en chef lit ensuite l'édition, écrit l'éditorial et choisit
-l'article de une.
+| Cahier | Rubrique | Ce qu'on y apprend |
+|---|---|---|
+| — | L'essentiel du jour | Tour du monde en 10 à 12 brèves sourcées |
+| Monde | Géopolitique & conflits | Guerres, diplomatie, puissances |
+| Monde | Europe | UE, institutions, pays européens |
+| Monde | Sud global | Afrique, Asie, Amérique latine, émergents |
+| France | Politique française | Gouvernement, Parlement, institutions |
+| France | Société & droits | Travail, éducation, justice, migrations, inégalités |
+| Économie | Économie mondiale | Marchés, banques centrales, commerce |
+| Économie | Énergie & ressources | Pétrole, gaz, électricité, métaux, alimentation |
+| Planète & sciences | Climat & biodiversité | Science du climat, COP, transition |
+| Planète & sciences | Sciences & santé | Recherche, médecine, espace |
+| Numérique | Technologies & IA | IA, plateformes, puces, régulation |
+| Numérique | Cybersécurité | Attaques, failles, cyberconflits |
+| Idées | Idées & culture | Livres, débats, arts, médias |
+| — | Éditorial | Le fil rouge du jour et le choix de la une |
+
+## Ce que contient chaque article
+
+- un texte court (450 à 650 mots) où **chaque fait porte son lien** vers la
+  source, avec au moins 6 liens vers au moins 4 sites ;
+- **En bref** : les trois points à retenir ;
+- **Notions clés** : les concepts expliqués, chacun avec une ressource
+  pédagogique. Elles alimentent le glossaire du site ;
+- **Pour aller plus loin** : 3 à 5 dossiers, rapports ou explications de fond ;
+- **Sources** : la liste complète, numérotée, avec le nom de chaque site.
+
+Le site propose aussi une une avec l'éditorial, des pages par cahier et par
+rubrique, un **glossaire des notions**, une **recherche** plein texte, les
+archives, un flux RSS et un mode sombre.
 
 ## Organisation du dépôt
 
@@ -27,6 +47,8 @@ content/AAAA-MM-JJ/*.md        les articles, une édition par dossier
 assets/style.css               mise en page
 scripts/build.mjs              générateur du site statique (sans dépendance) → _site/
 scripts/verifier.mjs           contrôle du format des articles
+scripts/verifier-liens.mjs     test des liens ; --corriger retire les liens morts
+assets/app.js                  thème, barre de lecture, recherche
 vercel.json                    configuration de l'hébergement Vercel
 .github/workflows/
   edition-quotidienne.yml      la routine : agents → éditorial → commit sur main
@@ -70,8 +92,10 @@ règle avec la variable de dépôt `MODELE_REDACTION`, qui vaut
 ## Ajouter ou modifier une rubrique
 
 Tout se fait dans `site.config.json`. Il suffit d'ajouter une entrée
-`{ id, nom, agent, consigne }`. La navigation du site, la page de rubrique et
-l'agent-rédacteur correspondant sont créés automatiquement à l'édition suivante.
+`{ id, cahier, nom, agent, consigne }`. La page de rubrique, sa place dans son
+cahier et l'agent-rédacteur correspondant sont créés automatiquement à
+l'édition suivante. Chaque rubrique ajoute un agent, donc une exécution de
+Claude, à la routine quotidienne.
 
 ## Alternative : une routine Claude Code
 
@@ -82,6 +106,6 @@ par rubrique, écrit l'éditorial, reconstruit le site et pousse l'édition.
 ## Avertissement
 
 Les articles sont des synthèses produites par une IA à partir des sources
-qu'elle cite. La charte interdit l'invention de faits et impose au moins
-quatre sources par article, mais une relecture humaine reste recommandée
-avant toute diffusion.
+qu'elle cite. La charte interdit l'invention de faits et d'URL, et la
+routine teste chaque lien avant publication. Une relecture humaine reste
+toutefois recommandée avant toute diffusion.

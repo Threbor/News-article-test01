@@ -18,7 +18,8 @@ Ce skill fait tourner toute la rédaction dans une seule session Claude Code
    de rechercher avec WebSearch/WebFetch, de ne rien inventer, d'éviter les
    sujets déjà traités (en-têtes de `content/*/<id>.md`) et d'écrire uniquement
    `content/DATE/<id>.md`, sans opération git.
-4. Quand tous ont rendu leur copie : `node scripts/verifier.mjs content/DATE/*.md`.
+4. Quand tous ont rendu leur copie : `node scripts/verifier-liens.mjs --corriger content/DATE/*.md`
+   (si le réseau le permet), puis `node scripts/verifier.mjs content/DATE/*.md`.
    Renvoie à son agent tout article refusé, avec les erreurs à corriger.
 5. Écris toi-même l'éditorial `content/DATE/editorial.md` en suivant la section
    « Éditorial » de `CONSIGNES.md` (avec la clé `une:`).
